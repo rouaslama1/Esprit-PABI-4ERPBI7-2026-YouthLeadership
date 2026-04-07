@@ -1,0 +1,30 @@
+﻿Member_PK,Member_Code,Member_First_Name,Member_Last_Name,Member_Phone,Member_Birth_Date,Season,Member_Grade,Member_Trainig_Level,Member_Unit
+1,900006957,Mohamed Hamza,Ben Haha,No Data Specified,11-07-1997,2025-2026,Unit Leader,Preliminary,Kachafa
+2,900005516,Mejdi,Boulaares,No Data Specified,20-07-2000,2025-2026,Assistant Unit Leader,No Training,Kachafa
+3,900010751,Bissan,Abbasi,No Data Specified,09-06-2001,2025-2026,Unit Leader,Elementary,Dalilet
+4,900011701,Farial,Mbarek,No Data Specified,03-02-2006,2025-2026,Member,Elementary,Dalilet
+5,900014629,Mariem Echouk,Echouk,No Data Specified,No Data Specified,2025-2026,Member,No Data Specified,Dalilet
+6,900011089,Fatma Zahra,Abbasi,No Data Specified,No Data Specified,2025-2026,Member,Elementary,Dalilet
+7,900010026,Baraa,Ben Said,No Data Specified,No Data Specified,2025-2026,Member,Elementary,Dalilet
+8,900007805,Hajer,Gharbi,No Data Specified,No Data Specified,2025-2026,Member,Elementary,Dalilet
+9,900010253,Maram,Bensib,No Data Specified,No Data Specified,2025-2026,Member,Elementary,Dalilet
+10,900001443,Taher,Saadani,25856155,27-12-1992,2025-2026,Unit Leader,Wood Badge,Jawela
+11,900008602,Jassem,Lassoud,No Data Specified,07-10-2002,2025-2026,Assistant Unit Leader,No Training,Jawela
+12,900009451,Renim,Obeidi,No Data Specified,22-09-2004,2025-2026,Assistant Unit Leader,Preliminary,Morchidet
+13,900007396,Hajer,Semati,No Data Specified,09-02-2001,2025-2026,Assistant Unit Leader,No Training,Morchidet
+14,900015513,Mariem,Khfifi,No Data Specified,01-01-2012,2025-2026,Member,No Training,Morchidet
+15,900011092,Yomna,Khfifi,No Data Specified,12-07-2012,2025-2026,Member,No Training,Morchidet
+16,900010753,Nourhen,Amnezli,No Data Specified,06-09-2008,2025-2026,Member,No Training,Morchidet
+17,900011098,Remel,Ben Said,No Data Specified,22-12-2009,2025-2026,Member,No Training,Morchidet
+18,900008061,Chatha,Mahfoudhi,22491362,01-08-2012,2025-2026,Member,No Training,Morchidet
+19,900011095,Rahma,Bourawi,No Data Specified,29-07-2012,2025-2026,Member,No Training,Morchidet
+20,900013354,Amna,Harchani,No Data Specified,14-05-2014,2025-2026,Member,No Training,Morchidet
+21,900007686,Wafa,Ben Said,No Data Specified,25-08-1983,2025-2026,Unit Leader,Wood Badge,Zaharat
+22,900011091,Remas,Kebli,No Data Specified,11-10-2005,2025-2026,Assistant Unit Leader,No Training,Zaharat
+23,900016675,Lujain,Jelassi,No Data Specified,12-12-2015,2025-2026,Member,No Data Specified,Zaharat
+24,900002913,Haythem,Ben Aicha,No Data Specified,15-02-1998,2025-2026,Unit Leader,Wood Badge,Achbal
+25,900009452,Amna,Arbi,No Data Specified,23-06-2004,2025-2026,Assistant Unit Leader,No Training,Achbal
+26,900010758,Mohamed Saleh,Abbasi,No Data Specified,02-04-2012,2025-2026,Member,No Training,Achbal
+27,900013352,Yahya,Harchani,No Data Specified,10-05-2014,2025-2026,Member,No Training,Achbal
+28,900008353,Mohamed,Toumi,No Data Specified,02-05-2014,2025-2026,Member,No Training,Achbal
+29,900013102,Yahya,Mokhtar,No Data Specified,24-05-2013,2025-2026,Member,No Training,Achbal

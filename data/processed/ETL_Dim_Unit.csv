@@ -1,0 +1,42 @@
+﻿Unit_PK,Unit_Name,Unit_AKA,Season,Activity_Count,Activity_Budget,Members_Count,Leaders_Count,Females_Count,Males_Count,Scout_Origin
+1,Achbal,AlKrawen,2023-2024,30,1500,45,4,-1,-1,Grombalia
+2,Achbal,AlKrawen,2024-2025,36,1700,25,2,-1,-1,Grombalia
+3,Achbal,AlKrawen,2025-2026,12,300,12,2,1,5,Grombalia
+4,Zaharat,AlYasamin,2023-2024,28,1600,40,4,-1,-1,Grombalia
+5,Zaharat,AlYasamin,2024-2025,34,1200,18,3,-1,-1,Grombalia
+6,Zaharat,AlYasamin,2025-2026,5,200,25,2,3,0,Grombalia
+7,Kachafa,Hannibal,2023-2024,32,1500,24,3,-1,-1,Grombalia
+8,Kachafa,Hannibal,2024-2025,40,1200,16,3,-1,-1,Grombalia
+9,Kachafa,Hannibal,2025-2026,3,200,12,2,0,2,Grombalia
+10,Morchidet,Balkis,2023-2024,30,2000,34,4,-1,-1,Grombalia
+11,Morchidet,Balkis,2024-2025,38,1500,18,4,-1,-1,Grombalia
+12,Morchidet,Balkis,2025-2026,3,300,20,2,9,0,Grombalia
+13,Jawela,Grombalia Clan,2023-2024,25,1000,12,2,-1,-1,Grombalia
+14,Jawela,Grombalia Clan,2024-2025,30,4000,10,2,-1,-1,Grombalia
+15,Jawela,Grombalia Clan,2025-2026,2,200,8,2,0,2,Grombalia
+16,Dalilet,Mariem,2023-2024,20,800,8,2,-1,-1,Grombalia
+17,Dalilet,Mariem,2024-2025,24,1000,10,2,-1,-1,Grombalia
+18,Dalilet,Mariem,2025-2026,2,200,6,1,2,0,Grombalia
+19,Achbal,Toyour,2023-2024,-1,-1,39,-1,-1,-1,Somaa
+20,Roued,Koudama,2023-2024,-1,-1,21,-1,-1,-1,Somaa
+21,Dalilet,Saad,2023-2024,-1,-1,10,-1,-1,-1,Somaa
+22,Jawela,Achiret Jawela,2023-2024,-1,-1,11,-1,-1,-1,Somaa
+23,Morchidet,Aghnesi,2023-2024,-1,-1,23,-1,-1,-1,Somaa
+24,Achbal,Albasatin,2023-2024,-1,-1,38,-1,-1,-1,Somaa
+25,Zaharat,Albanafsaj,2023-2024,-1,-1,36,-1,-1,-1,Somaa
+26,Morchidet,Alissa,2023-2024,-1,-1,64,-1,-1,-1,Somaa
+27,Zaharat,Narjes,2023-2024,-1,-1,31,-1,-1,-1,Somaa
+28,Kachafa,Monji Bali,2023-2024,-1,-1,26,-1,-1,-1,Somaa
+29,Kachafa,Abu Kacem Alchabi,2023-2024,-1,-1,41,-1,-1,-1,Somaa
+30,Achbal,Toyour,2024-2025,-1,-1,38,-1,-1,-1,Somaa
+31,Zaharat,Asafir,2024-2025,-1,-1,30,-1,-1,-1,Somaa
+32,Dalilet,Saad,2024-2025,-1,-1,18,-1,-1,-1,Somaa
+33,Jawela,Achiret Jawela 1,2024-2025,-1,-1,27,-1,-1,-1,Somaa
+34,Achbal,Albasatin,2024-2025,-1,-1,37,-1,-1,-1,Somaa
+35,Zaharat,Albanafsaj,2024-2025,-1,-1,28,-1,-1,-1,Somaa
+36,Zaharat,Narjes,2024-2025,-1,-1,19,-1,-1,-1,Somaa
+37,Morchidet,Aghnesi,2024-2025,-1,-1,25,-1,-1,-1,Somaa
+38,Morchidet,Alissa,2024-2025,-1,-1,62,-1,-1,-1,Somaa
+39,Kachafa,Abu Kacem Alchabi,2024-2025,-1,-1,35,-1,-1,-1,Somaa
+40,Roued,Koudama,2024-2025,-1,-1,31,-1,-1,-1,Somaa
+41,Kachafa,Monji Bali,2024-2025,-1,-1,19,-1,-1,-1,Somaa

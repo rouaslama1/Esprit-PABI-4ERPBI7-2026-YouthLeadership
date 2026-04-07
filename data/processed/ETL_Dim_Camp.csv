@@ -1,0 +1,8 @@
+﻿Camp_PK,Camp_Name,Type_Camp_FK,Season,Participants,Duration_Days,Transport_Cost,Food_Cost,Equipment_Cost,Health_Cost,Organization_Cost,Total_Cost
+1,Spring Camp,1,2023-2024,95,5,2600,3000,1500,600,500,8200
+2,Summer Camp,2,2023-2024,120,10,4200,7500,3200,1100,1000,18000
+3,Spring Camp,1,2024-2025,55,6,3200,3800,1800,900,800,10500
+4,Summer Camp (Young Units),3,2024-2025,85,7,2800,4600,2300,900,900,11500
+5,Summer Camp (Advanced Units),4,2024-2025,33,7,3400,5200,2900,1100,900,13500
+6,Mobile Camp,5,2024-2025,32,3,500,1000,200,300,0,2000
+7,Preparatory Camp,6,2025-2026,50,2,100,1500,100,100,200,2000

@@ -1,0 +1,417 @@
+﻿Budget_PK,Season,Flowtype,budget_sub_category,Fundig_Source,budget_date,amount,scouts_origin
+1,2024-2025,Cash,Different,Expenditure,24-07-2024,0,Grombalia
+2,2024-2025,Cash,Medias,Expenditure,24-07-2024,0,Grombalia
+3,2024-2025,Cash,Insurance And Treatment,Expenditure,24-07-2024,0,Grombalia
+4,2024-2025,Cash,Salaries,Expenditure,24-07-2024,0,Grombalia
+5,2024-2025,Cash,Educational Equipment,Expenditure,24-07-2024,3500,Grombalia
+6,2024-2025,Cash,Trips,Expenditure,24-07-2024,0,Grombalia
+7,2024-2025,Cash,Equipment,Expenditure,24-07-2024,0,Grombalia
+8,2024-2025,Cash,Transport,Expenditure,24-07-2024,0,Grombalia
+9,2024-2025,Cash,Food,Expenditure,24-07-2024,0,Grombalia
+10,2024-2025,Cash,Different,Expenditure,22-07-2024,0,Grombalia
+11,2024-2025,Cash,Medias,Expenditure,22-07-2024,0,Grombalia
+12,2024-2025,Cash,Insurance And Treatment,Expenditure,22-07-2024,0,Grombalia
+13,2024-2025,Cash,Salaries,Expenditure,22-07-2024,0,Grombalia
+14,2024-2025,Cash,Educational Equipment,Expenditure,22-07-2024,64000,Grombalia
+15,2024-2025,Cash,Trips,Expenditure,22-07-2024,0,Grombalia
+16,2024-2025,Cash,Equipment,Expenditure,22-07-2024,0,Grombalia
+17,2024-2025,Cash,Transport,Expenditure,22-07-2024,0,Grombalia
+18,2024-2025,Cash,Food,Expenditure,22-07-2024,0,Grombalia
+19,2024-2025,Cheque,Different,Expenditure,18-08-2024,0,Grombalia
+20,2024-2025,Cheque,Medias,Expenditure,18-08-2024,0,Grombalia
+21,2024-2025,Cheque,Insurance And Treatment,Expenditure,18-08-2024,0,Grombalia
+22,2024-2025,Cheque,Salaries,Expenditure,18-08-2024,0,Grombalia
+23,2024-2025,Cheque,Educational Equipment,Expenditure,18-08-2024,0,Grombalia
+24,2024-2025,Cheque,Trips,Expenditure,18-08-2024,0,Grombalia
+25,2024-2025,Cheque,Equipment,Expenditure,18-08-2024,0,Grombalia
+26,2024-2025,Cheque,Transport,Expenditure,18-08-2024,0,Grombalia
+27,2024-2025,Cheque,Food,Expenditure,18-08-2024,121556,Grombalia
+28,2024-2025,Cash,Different,Expenditure,19-08-2024,11900,Grombalia
+29,2024-2025,Cash,Medias,Expenditure,19-08-2024,0,Grombalia
+30,2024-2025,Cash,Insurance And Treatment,Expenditure,19-08-2024,0,Grombalia
+31,2024-2025,Cash,Salaries,Expenditure,19-08-2024,0,Grombalia
+32,2024-2025,Cash,Educational Equipment,Expenditure,19-08-2024,0,Grombalia
+33,2024-2025,Cash,Trips,Expenditure,19-08-2024,0,Grombalia
+34,2024-2025,Cash,Equipment,Expenditure,19-08-2024,0,Grombalia
+35,2024-2025,Cash,Transport,Expenditure,19-08-2024,0,Grombalia
+36,2024-2025,Cash,Food,Expenditure,19-08-2024,0,Grombalia
+37,2024-2025,Cash,Different,Expenditure,19-08-2024,0,Grombalia
+38,2024-2025,Cash,Medias,Expenditure,19-08-2024,0,Grombalia
+39,2024-2025,Cash,Insurance And Treatment,Expenditure,19-08-2024,0,Grombalia
+40,2024-2025,Cash,Salaries,Expenditure,19-08-2024,0,Grombalia
+41,2024-2025,Cash,Educational Equipment,Expenditure,19-08-2024,0,Grombalia
+42,2024-2025,Cash,Trips,Expenditure,19-08-2024,180000,Grombalia
+43,2024-2025,Cash,Equipment,Expenditure,19-08-2024,0,Grombalia
+44,2024-2025,Cash,Transport,Expenditure,19-08-2024,0,Grombalia
+45,2024-2025,Cash,Food,Expenditure,19-08-2024,0,Grombalia
+46,2024-2025,Cash,Different,Expenditure,14-08-2024,0,Grombalia
+47,2024-2025,Cash,Medias,Expenditure,14-08-2024,0,Grombalia
+48,2024-2025,Cash,Insurance And Treatment,Expenditure,14-08-2024,0,Grombalia
+49,2024-2025,Cash,Salaries,Expenditure,14-08-2024,0,Grombalia
+50,2024-2025,Cash,Educational Equipment,Expenditure,14-08-2024,0,Grombalia
+51,2024-2025,Cash,Trips,Expenditure,14-08-2024,0,Grombalia
+52,2024-2025,Cash,Equipment,Expenditure,14-08-2024,144000,Grombalia
+53,2024-2025,Cash,Transport,Expenditure,14-08-2024,0,Grombalia
+54,2024-2025,Cash,Food,Expenditure,14-08-2024,0,Grombalia
+55,2024-2025,Cheque,Different,Expenditure,19-08-2024,0,Grombalia
+56,2024-2025,Cheque,Medias,Expenditure,19-08-2024,0,Grombalia
+57,2024-2025,Cheque,Insurance And Treatment,Expenditure,19-08-2024,0,Grombalia
+58,2024-2025,Cheque,Salaries,Expenditure,19-08-2024,0,Grombalia
+59,2024-2025,Cheque,Educational Equipment,Expenditure,19-08-2024,0,Grombalia
+60,2024-2025,Cheque,Trips,Expenditure,19-08-2024,0,Grombalia
+61,2024-2025,Cheque,Equipment,Expenditure,19-08-2024,77000,Grombalia
+62,2024-2025,Cheque,Transport,Expenditure,19-08-2024,0,Grombalia
+63,2024-2025,Cheque,Food,Expenditure,19-08-2024,0,Grombalia
+64,2024-2025,Cash,Different,Expenditure,19-08-2024,0,Grombalia
+65,2024-2025,Cash,Medias,Expenditure,19-08-2024,0,Grombalia
+66,2024-2025,Cash,Insurance And Treatment,Expenditure,19-08-2024,0,Grombalia
+67,2024-2025,Cash,Salaries,Expenditure,19-08-2024,0,Grombalia
+68,2024-2025,Cash,Educational Equipment,Expenditure,19-08-2024,0,Grombalia
+69,2024-2025,Cash,Trips,Expenditure,19-08-2024,0,Grombalia
+70,2024-2025,Cash,Equipment,Expenditure,19-08-2024,0,Grombalia
+71,2024-2025,Cash,Transport,Expenditure,19-08-2024,0,Grombalia
+72,2024-2025,Cash,Food,Expenditure,19-08-2024,2700,Grombalia
+73,2024-2025,Cash,Different,Expenditure,19-08-2024,0,Grombalia
+74,2024-2025,Cash,Medias,Expenditure,19-08-2024,0,Grombalia
+75,2024-2025,Cash,Insurance And Treatment,Expenditure,19-08-2024,0,Grombalia
+76,2024-2025,Cash,Salaries,Expenditure,19-08-2024,0,Grombalia
+77,2024-2025,Cash,Educational Equipment,Expenditure,19-08-2024,0,Grombalia
+78,2024-2025,Cash,Trips,Expenditure,19-08-2024,0,Grombalia
+79,2024-2025,Cash,Equipment,Expenditure,19-08-2024,0,Grombalia
+80,2024-2025,Cash,Transport,Expenditure,19-08-2024,0,Grombalia
+81,2024-2025,Cash,Food,Expenditure,19-08-2024,20000,Grombalia
+82,2024-2025,Cash,Different,Expenditure,19-08-2024,0,Grombalia
+83,2024-2025,Cash,Medias,Expenditure,19-08-2024,0,Grombalia
+84,2024-2025,Cash,Insurance And Treatment,Expenditure,19-08-2024,0,Grombalia
+85,2024-2025,Cash,Salaries,Expenditure,19-08-2024,0,Grombalia
+86,2024-2025,Cash,Educational Equipment,Expenditure,19-08-2024,0,Grombalia
+87,2024-2025,Cash,Trips,Expenditure,19-08-2024,0,Grombalia
+88,2024-2025,Cash,Equipment,Expenditure,19-08-2024,0,Grombalia
+89,2024-2025,Cash,Transport,Expenditure,19-08-2024,0,Grombalia
+90,2024-2025,Cash,Food,Expenditure,19-08-2024,43721,Grombalia
+91,2024-2025,Cash,Different,Expenditure,20-08-2024,0,Grombalia
+92,2024-2025,Cash,Medias,Expenditure,20-08-2024,0,Grombalia
+93,2024-2025,Cash,Insurance And Treatment,Expenditure,20-08-2024,0,Grombalia
+94,2024-2025,Cash,Salaries,Expenditure,20-08-2024,0,Grombalia
+95,2024-2025,Cash,Educational Equipment,Expenditure,20-08-2024,0,Grombalia
+96,2024-2025,Cash,Trips,Expenditure,20-08-2024,0,Grombalia
+97,2024-2025,Cash,Equipment,Expenditure,20-08-2024,0,Grombalia
+98,2024-2025,Cash,Transport,Expenditure,20-08-2024,0,Grombalia
+99,2024-2025,Cash,Food,Expenditure,20-08-2024,2401,Grombalia
+100,2024-2025,Cash,Different,Expenditure,20-08-2024,0,Grombalia
+101,2024-2025,Cash,Medias,Expenditure,20-08-2024,0,Grombalia
+102,2024-2025,Cash,Insurance And Treatment,Expenditure,20-08-2024,0,Grombalia
+103,2024-2025,Cash,Salaries,Expenditure,20-08-2024,0,Grombalia
+104,2024-2025,Cash,Educational Equipment,Expenditure,20-08-2024,0,Grombalia
+105,2024-2025,Cash,Trips,Expenditure,20-08-2024,0,Grombalia
+106,2024-2025,Cash,Equipment,Expenditure,20-08-2024,0,Grombalia
+107,2024-2025,Cash,Transport,Expenditure,20-08-2024,0,Grombalia
+108,2024-2025,Cash,Food,Expenditure,20-08-2024,4086,Grombalia
+109,2024-2025,Cash,Different,Expenditure,20-08-2024,0,Grombalia
+110,2024-2025,Cash,Medias,Expenditure,20-08-2024,0,Grombalia
+111,2024-2025,Cash,Insurance And Treatment,Expenditure,20-08-2024,0,Grombalia
+112,2024-2025,Cash,Salaries,Expenditure,20-08-2024,0,Grombalia
+113,2024-2025,Cash,Educational Equipment,Expenditure,20-08-2024,0,Grombalia
+114,2024-2025,Cash,Trips,Expenditure,20-08-2024,0,Grombalia
+115,2024-2025,Cash,Equipment,Expenditure,20-08-2024,0,Grombalia
+116,2024-2025,Cash,Transport,Expenditure,20-08-2024,0,Grombalia
+117,2024-2025,Cash,Food,Expenditure,20-08-2024,8850,Grombalia
+118,2024-2025,Cash,Different,Expenditure,20-08-2024,0,Grombalia
+119,2024-2025,Cash,Medias,Expenditure,20-08-2024,0,Grombalia
+120,2024-2025,Cash,Insurance And Treatment,Expenditure,20-08-2024,0,Grombalia
+121,2024-2025,Cash,Salaries,Expenditure,20-08-2024,0,Grombalia
+122,2024-2025,Cash,Educational Equipment,Expenditure,20-08-2024,0,Grombalia
+123,2024-2025,Cash,Trips,Expenditure,20-08-2024,0,Grombalia
+124,2024-2025,Cash,Equipment,Expenditure,20-08-2024,0,Grombalia
+125,2024-2025,Cash,Transport,Expenditure,20-08-2024,0,Grombalia
+126,2024-2025,Cash,Food,Expenditure,20-08-2024,30500,Grombalia
+127,2024-2025,Cash,Different,Expenditure,20-08-2024,0,Grombalia
+128,2024-2025,Cash,Medias,Expenditure,20-08-2024,0,Grombalia
+129,2024-2025,Cash,Insurance And Treatment,Expenditure,20-08-2024,0,Grombalia
+130,2024-2025,Cash,Salaries,Expenditure,20-08-2024,0,Grombalia
+131,2024-2025,Cash,Educational Equipment,Expenditure,20-08-2024,0,Grombalia
+132,2024-2025,Cash,Trips,Expenditure,20-08-2024,0,Grombalia
+133,2024-2025,Cash,Equipment,Expenditure,20-08-2024,0,Grombalia
+134,2024-2025,Cash,Transport,Expenditure,20-08-2024,0,Grombalia
+135,2024-2025,Cash,Food,Expenditure,20-08-2024,13005,Grombalia
+136,2024-2025,Cash,Different,Expenditure,21-08-2024,0,Grombalia
+137,2024-2025,Cash,Medias,Expenditure,21-08-2024,0,Grombalia
+138,2024-2025,Cash,Insurance And Treatment,Expenditure,21-08-2024,0,Grombalia
+139,2024-2025,Cash,Salaries,Expenditure,21-08-2024,0,Grombalia
+140,2024-2025,Cash,Educational Equipment,Expenditure,21-08-2024,0,Grombalia
+141,2024-2025,Cash,Trips,Expenditure,21-08-2024,0,Grombalia
+142,2024-2025,Cash,Equipment,Expenditure,21-08-2024,0,Grombalia
+143,2024-2025,Cash,Transport,Expenditure,21-08-2024,0,Grombalia
+144,2024-2025,Cash,Food,Expenditure,21-08-2024,30000,Grombalia
+145,2024-2025,Cash,Different,Expenditure,21-08-2024,0,Grombalia
+146,2024-2025,Cash,Medias,Expenditure,21-08-2024,0,Grombalia
+147,2024-2025,Cash,Insurance And Treatment,Expenditure,21-08-2024,0,Grombalia
+148,2024-2025,Cash,Salaries,Expenditure,21-08-2024,0,Grombalia
+149,2024-2025,Cash,Educational Equipment,Expenditure,21-08-2024,0,Grombalia
+150,2024-2025,Cash,Trips,Expenditure,21-08-2024,0,Grombalia
+151,2024-2025,Cash,Equipment,Expenditure,21-08-2024,0,Grombalia
+152,2024-2025,Cash,Transport,Expenditure,21-08-2024,0,Grombalia
+153,2024-2025,Cash,Food,Expenditure,21-08-2024,12164,Grombalia
+154,2024-2025,Cash,Different,Expenditure,21-08-2024,0,Grombalia
+155,2024-2025,Cash,Medias,Expenditure,21-08-2024,0,Grombalia
+156,2024-2025,Cash,Insurance And Treatment,Expenditure,21-08-2024,0,Grombalia
+157,2024-2025,Cash,Salaries,Expenditure,21-08-2024,0,Grombalia
+158,2024-2025,Cash,Educational Equipment,Expenditure,21-08-2024,0,Grombalia
+159,2024-2025,Cash,Trips,Expenditure,21-08-2024,0,Grombalia
+160,2024-2025,Cash,Equipment,Expenditure,21-08-2024,0,Grombalia
+161,2024-2025,Cash,Transport,Expenditure,21-08-2024,0,Grombalia
+162,2024-2025,Cash,Food,Expenditure,21-08-2024,29210,Grombalia
+163,2024-2025,Cash,Different,Expenditure,21-08-2024,0,Grombalia
+164,2024-2025,Cash,Medias,Expenditure,21-08-2024,0,Grombalia
+165,2024-2025,Cash,Insurance And Treatment,Expenditure,21-08-2024,0,Grombalia
+166,2024-2025,Cash,Salaries,Expenditure,21-08-2024,0,Grombalia
+167,2024-2025,Cash,Educational Equipment,Expenditure,21-08-2024,0,Grombalia
+168,2024-2025,Cash,Trips,Expenditure,21-08-2024,0,Grombalia
+169,2024-2025,Cash,Equipment,Expenditure,21-08-2024,0,Grombalia
+170,2024-2025,Cash,Transport,Expenditure,21-08-2024,0,Grombalia
+171,2024-2025,Cash,Food,Expenditure,21-08-2024,7350,Grombalia
+172,2024-2025,Cash,Different,Expenditure,21-08-2024,0,Grombalia
+173,2024-2025,Cash,Medias,Expenditure,21-08-2024,0,Grombalia
+174,2024-2025,Cash,Insurance And Treatment,Expenditure,21-08-2024,25000,Grombalia
+175,2024-2025,Cash,Salaries,Expenditure,21-08-2024,0,Grombalia
+176,2024-2025,Cash,Educational Equipment,Expenditure,21-08-2024,0,Grombalia
+177,2024-2025,Cash,Trips,Expenditure,21-08-2024,0,Grombalia
+178,2024-2025,Cash,Equipment,Expenditure,21-08-2024,0,Grombalia
+179,2024-2025,Cash,Transport,Expenditure,21-08-2024,0,Grombalia
+180,2024-2025,Cash,Food,Expenditure,21-08-2024,0,Grombalia
+181,2024-2025,Cash,Different,Expenditure,21-08-2024,180000,Grombalia
+182,2024-2025,Cash,Medias,Expenditure,21-08-2024,0,Grombalia
+183,2024-2025,Cash,Insurance And Treatment,Expenditure,21-08-2024,0,Grombalia
+184,2024-2025,Cash,Salaries,Expenditure,21-08-2024,0,Grombalia
+185,2024-2025,Cash,Educational Equipment,Expenditure,21-08-2024,0,Grombalia
+186,2024-2025,Cash,Trips,Expenditure,21-08-2024,0,Grombalia
+187,2024-2025,Cash,Equipment,Expenditure,21-08-2024,0,Grombalia
+188,2024-2025,Cash,Transport,Expenditure,21-08-2024,0,Grombalia
+189,2024-2025,Cash,Food,Expenditure,21-08-2024,0,Grombalia
+190,2024-2025,Cash,Different,Expenditure,22-08-2024,0,Grombalia
+191,2024-2025,Cash,Medias,Expenditure,22-08-2024,0,Grombalia
+192,2024-2025,Cash,Insurance And Treatment,Expenditure,22-08-2024,0,Grombalia
+193,2024-2025,Cash,Salaries,Expenditure,22-08-2024,0,Grombalia
+194,2024-2025,Cash,Educational Equipment,Expenditure,22-08-2024,0,Grombalia
+195,2024-2025,Cash,Trips,Expenditure,22-08-2024,0,Grombalia
+196,2024-2025,Cash,Equipment,Expenditure,22-08-2024,0,Grombalia
+197,2024-2025,Cash,Transport,Expenditure,22-08-2024,0,Grombalia
+198,2024-2025,Cash,Food,Expenditure,22-08-2024,55600,Grombalia
+199,2024-2025,Cash,Different,Expenditure,22-08-2024,0,Grombalia
+200,2024-2025,Cash,Medias,Expenditure,22-08-2024,0,Grombalia
+201,2024-2025,Cash,Insurance And Treatment,Expenditure,22-08-2024,0,Grombalia
+202,2024-2025,Cash,Salaries,Expenditure,22-08-2024,0,Grombalia
+203,2024-2025,Cash,Educational Equipment,Expenditure,22-08-2024,0,Grombalia
+204,2024-2025,Cash,Trips,Expenditure,22-08-2024,0,Grombalia
+205,2024-2025,Cash,Equipment,Expenditure,22-08-2024,0,Grombalia
+206,2024-2025,Cash,Transport,Expenditure,22-08-2024,0,Grombalia
+207,2024-2025,Cash,Food,Expenditure,22-08-2024,48530,Grombalia
+208,2024-2025,Cash,Different,Expenditure,22-08-2024,0,Grombalia
+209,2024-2025,Cash,Medias,Expenditure,22-08-2024,0,Grombalia
+210,2024-2025,Cash,Insurance And Treatment,Expenditure,22-08-2024,0,Grombalia
+211,2024-2025,Cash,Salaries,Expenditure,22-08-2024,0,Grombalia
+212,2024-2025,Cash,Educational Equipment,Expenditure,22-08-2024,0,Grombalia
+213,2024-2025,Cash,Trips,Expenditure,22-08-2024,0,Grombalia
+214,2024-2025,Cash,Equipment,Expenditure,22-08-2024,0,Grombalia
+215,2024-2025,Cash,Transport,Expenditure,22-08-2024,0,Grombalia
+216,2024-2025,Cash,Food,Expenditure,22-08-2024,2000,Grombalia
+217,2024-2025,Cash,Different,Expenditure,22-08-2024,0,Grombalia
+218,2024-2025,Cash,Medias,Expenditure,22-08-2024,0,Grombalia
+219,2024-2025,Cash,Insurance And Treatment,Expenditure,22-08-2024,0,Grombalia
+220,2024-2025,Cash,Salaries,Expenditure,22-08-2024,0,Grombalia
+221,2024-2025,Cash,Educational Equipment,Expenditure,22-08-2024,0,Grombalia
+222,2024-2025,Cash,Trips,Expenditure,22-08-2024,0,Grombalia
+223,2024-2025,Cash,Equipment,Expenditure,22-08-2024,0,Grombalia
+224,2024-2025,Cash,Transport,Expenditure,22-08-2024,0,Grombalia
+225,2024-2025,Cash,Food,Expenditure,22-08-2024,1960,Grombalia
+226,2024-2025,Cash,Different,Expenditure,22-08-2024,0,Grombalia
+227,2024-2025,Cash,Medias,Expenditure,22-08-2024,0,Grombalia
+228,2024-2025,Cash,Insurance And Treatment,Expenditure,22-08-2024,5490,Grombalia
+229,2024-2025,Cash,Salaries,Expenditure,22-08-2024,0,Grombalia
+230,2024-2025,Cash,Educational Equipment,Expenditure,22-08-2024,0,Grombalia
+231,2024-2025,Cash,Trips,Expenditure,22-08-2024,0,Grombalia
+232,2024-2025,Cash,Equipment,Expenditure,22-08-2024,0,Grombalia
+233,2024-2025,Cash,Transport,Expenditure,22-08-2024,0,Grombalia
+234,2024-2025,Cash,Food,Expenditure,22-08-2024,0,Grombalia
+235,2024-2025,Cash,Different,Expenditure,22-08-2024,0,Grombalia
+236,2024-2025,Cash,Medias,Expenditure,22-08-2024,0,Grombalia
+237,2024-2025,Cash,Insurance And Treatment,Expenditure,22-08-2024,0,Grombalia
+238,2024-2025,Cash,Salaries,Expenditure,22-08-2024,0,Grombalia
+239,2024-2025,Cash,Educational Equipment,Expenditure,22-08-2024,0,Grombalia
+240,2024-2025,Cash,Trips,Expenditure,22-08-2024,0,Grombalia
+241,2024-2025,Cash,Equipment,Expenditure,22-08-2024,0,Grombalia
+242,2024-2025,Cash,Transport,Expenditure,22-08-2024,0,Grombalia
+243,2024-2025,Cash,Food,Expenditure,22-08-2024,46600,Grombalia
+244,2024-2025,Cash,Different,Expenditure,23-08-2024,0,Grombalia
+245,2024-2025,Cash,Medias,Expenditure,23-08-2024,0,Grombalia
+246,2024-2025,Cash,Insurance And Treatment,Expenditure,23-08-2024,0,Grombalia
+247,2024-2025,Cash,Salaries,Expenditure,23-08-2024,0,Grombalia
+248,2024-2025,Cash,Educational Equipment,Expenditure,23-08-2024,0,Grombalia
+249,2024-2025,Cash,Trips,Expenditure,23-08-2024,0,Grombalia
+250,2024-2025,Cash,Equipment,Expenditure,23-08-2024,0,Grombalia
+251,2024-2025,Cash,Transport,Expenditure,23-08-2024,0,Grombalia
+252,2024-2025,Cash,Food,Expenditure,23-08-2024,70515,Grombalia
+253,2024-2025,Cash,Different,Expenditure,23-08-2024,0,Grombalia
+254,2024-2025,Cash,Medias,Expenditure,23-08-2024,0,Grombalia
+255,2024-2025,Cash,Insurance And Treatment,Expenditure,23-08-2024,0,Grombalia
+256,2024-2025,Cash,Salaries,Expenditure,23-08-2024,0,Grombalia
+257,2024-2025,Cash,Educational Equipment,Expenditure,23-08-2024,0,Grombalia
+258,2024-2025,Cash,Trips,Expenditure,23-08-2024,0,Grombalia
+259,2024-2025,Cash,Equipment,Expenditure,23-08-2024,0,Grombalia
+260,2024-2025,Cash,Transport,Expenditure,23-08-2024,0,Grombalia
+261,2024-2025,Cash,Food,Expenditure,23-08-2024,8950,Grombalia
+262,2024-2025,Cash,Different,Expenditure,23-08-2024,0,Grombalia
+263,2024-2025,Cash,Medias,Expenditure,23-08-2024,0,Grombalia
+264,2024-2025,Cash,Insurance And Treatment,Expenditure,23-08-2024,0,Grombalia
+265,2024-2025,Cash,Salaries,Expenditure,23-08-2024,0,Grombalia
+266,2024-2025,Cash,Educational Equipment,Expenditure,23-08-2024,0,Grombalia
+267,2024-2025,Cash,Trips,Expenditure,23-08-2024,0,Grombalia
+268,2024-2025,Cash,Equipment,Expenditure,23-08-2024,0,Grombalia
+269,2024-2025,Cash,Transport,Expenditure,23-08-2024,0,Grombalia
+270,2024-2025,Cash,Food,Expenditure,23-08-2024,36450,Grombalia
+271,2024-2025,Cash,Different,Expenditure,23-08-2024,146000,Grombalia
+272,2024-2025,Cash,Medias,Expenditure,23-08-2024,0,Grombalia
+273,2024-2025,Cash,Insurance And Treatment,Expenditure,23-08-2024,0,Grombalia
+274,2024-2025,Cash,Salaries,Expenditure,23-08-2024,0,Grombalia
+275,2024-2025,Cash,Educational Equipment,Expenditure,23-08-2024,0,Grombalia
+276,2024-2025,Cash,Trips,Expenditure,23-08-2024,0,Grombalia
+277,2024-2025,Cash,Equipment,Expenditure,23-08-2024,0,Grombalia
+278,2024-2025,Cash,Transport,Expenditure,23-08-2024,0,Grombalia
+279,2024-2025,Cash,Food,Expenditure,23-08-2024,0,Grombalia
+280,2024-2025,Cash,Different,Expenditure,24-08-2024,0,Grombalia
+281,2024-2025,Cash,Medias,Expenditure,24-08-2024,0,Grombalia
+282,2024-2025,Cash,Insurance And Treatment,Expenditure,24-08-2024,0,Grombalia
+283,2024-2025,Cash,Salaries,Expenditure,24-08-2024,0,Grombalia
+284,2024-2025,Cash,Educational Equipment,Expenditure,24-08-2024,0,Grombalia
+285,2024-2025,Cash,Trips,Expenditure,24-08-2024,0,Grombalia
+286,2024-2025,Cash,Equipment,Expenditure,24-08-2024,0,Grombalia
+287,2024-2025,Cash,Transport,Expenditure,24-08-2024,0,Grombalia
+288,2024-2025,Cash,Food,Expenditure,24-08-2024,3400,Grombalia
+289,2024-2025,Cash,Different,Expenditure,24-08-2024,0,Grombalia
+290,2024-2025,Cash,Medias,Expenditure,24-08-2024,0,Grombalia
+291,2024-2025,Cash,Insurance And Treatment,Expenditure,24-08-2024,0,Grombalia
+292,2024-2025,Cash,Salaries,Expenditure,24-08-2024,0,Grombalia
+293,2024-2025,Cash,Educational Equipment,Expenditure,24-08-2024,0,Grombalia
+294,2024-2025,Cash,Trips,Expenditure,24-08-2024,0,Grombalia
+295,2024-2025,Cash,Equipment,Expenditure,24-08-2024,0,Grombalia
+296,2024-2025,Cash,Transport,Expenditure,24-08-2024,0,Grombalia
+297,2024-2025,Cash,Food,Expenditure,24-08-2024,2200,Grombalia
+298,2024-2025,Cash,Different,Expenditure,24-08-2024,0,Grombalia
+299,2024-2025,Cash,Medias,Expenditure,24-08-2024,0,Grombalia
+300,2024-2025,Cash,Insurance And Treatment,Expenditure,24-08-2024,0,Grombalia
+301,2024-2025,Cash,Salaries,Expenditure,24-08-2024,0,Grombalia
+302,2024-2025,Cash,Educational Equipment,Expenditure,24-08-2024,0,Grombalia
+303,2024-2025,Cash,Trips,Expenditure,24-08-2024,0,Grombalia
+304,2024-2025,Cash,Equipment,Expenditure,24-08-2024,0,Grombalia
+305,2024-2025,Cash,Transport,Expenditure,24-08-2024,0,Grombalia
+306,2024-2025,Cash,Food,Expenditure,24-08-2024,42300,Grombalia
+307,2024-2025,Cash,Different,Expenditure,24-08-2024,0,Grombalia
+308,2024-2025,Cash,Medias,Expenditure,24-08-2024,0,Grombalia
+309,2024-2025,Cash,Insurance And Treatment,Expenditure,24-08-2024,0,Grombalia
+310,2024-2025,Cash,Salaries,Expenditure,24-08-2024,0,Grombalia
+311,2024-2025,Cash,Educational Equipment,Expenditure,24-08-2024,0,Grombalia
+312,2024-2025,Cash,Trips,Expenditure,24-08-2024,0,Grombalia
+313,2024-2025,Cash,Equipment,Expenditure,24-08-2024,0,Grombalia
+314,2024-2025,Cash,Transport,Expenditure,24-08-2024,0,Grombalia
+315,2024-2025,Cash,Food,Expenditure,24-08-2024,83531,Grombalia
+316,2024-2025,Cash,Different,Expenditure,24-08-2024,0,Grombalia
+317,2024-2025,Cash,Medias,Expenditure,24-08-2024,0,Grombalia
+318,2024-2025,Cash,Insurance And Treatment,Expenditure,24-08-2024,0,Grombalia
+319,2024-2025,Cash,Salaries,Expenditure,24-08-2024,0,Grombalia
+320,2024-2025,Cash,Educational Equipment,Expenditure,24-08-2024,0,Grombalia
+321,2024-2025,Cash,Trips,Expenditure,24-08-2024,0,Grombalia
+322,2024-2025,Cash,Equipment,Expenditure,24-08-2024,0,Grombalia
+323,2024-2025,Cash,Transport,Expenditure,24-08-2024,0,Grombalia
+324,2024-2025,Cash,Food,Expenditure,24-08-2024,10700,Grombalia
+325,2024-2025,Cash,Different,Expenditure,24-08-2024,0,Grombalia
+326,2024-2025,Cash,Medias,Expenditure,24-08-2024,0,Grombalia
+327,2024-2025,Cash,Insurance And Treatment,Expenditure,24-08-2024,41310,Grombalia
+328,2024-2025,Cash,Salaries,Expenditure,24-08-2024,0,Grombalia
+329,2024-2025,Cash,Educational Equipment,Expenditure,24-08-2024,0,Grombalia
+330,2024-2025,Cash,Trips,Expenditure,24-08-2024,0,Grombalia
+331,2024-2025,Cash,Equipment,Expenditure,24-08-2024,0,Grombalia
+332,2024-2025,Cash,Transport,Expenditure,24-08-2024,0,Grombalia
+333,2024-2025,Cash,Food,Expenditure,24-08-2024,0,Grombalia
+334,2024-2025,Cash,Different,Expenditure,26-05-2024,0,Grombalia
+335,2024-2025,Cash,Medias,Expenditure,26-05-2024,0,Grombalia
+336,2024-2025,Cash,Insurance And Treatment,Expenditure,26-05-2024,0,Grombalia
+337,2024-2025,Cash,Salaries,Expenditure,26-05-2024,0,Grombalia
+338,2024-2025,Cash,Educational Equipment,Expenditure,26-05-2024,0,Grombalia
+339,2024-2025,Cash,Trips,Expenditure,26-05-2024,0,Grombalia
+340,2024-2025,Cash,Equipment,Expenditure,26-05-2024,0,Grombalia
+341,2024-2025,Cash,Transport,Expenditure,26-05-2024,244800,Grombalia
+342,2024-2025,Cash,Food,Expenditure,26-05-2024,0,Grombalia
+343,2024-2025,Cash,Membership Fee,Internal Income,10-08-2024,1490000,Grombalia
+344,2024-2025,Cash,Membership Fee,Internal Income,15-08-2024,54000,Grombalia
+345,2024-2025,Cash,Support,Internal Income,16-08-2024,60000,Grombalia
+346,2024-2025,Cash,Support,Internal Income,18-08-2024,100000,Grombalia
+347,2024-2025,Cash,Support,External Income - Nawras,18-08-2024,200000,Grombalia
+348,2025-2026,Cash,Membership Fee,Internal Income,No Data Specified,1544000,Grombalia
+349,2025-2026,Cash,Educational Equipment,Expenditure,06-08-2025,3000,Matouia
+350,2025-2026,Cash,Educational Equipment,Expenditure,06-08-2025,12815,Matouia
+351,2025-2026,Cash,Educational Equipment,Expenditure,06-08-2025,5450,Matouia
+352,2025-2026,Cash,Food,Expenditure,06-08-205,121200,Matouia
+353,2025-2026,Cash,Food,Expenditure,06-08-2025,28000,Matouia
+354,2025-2026,Cash,Food,Expenditure,06-08-2025,79390,Matouia
+355,2025-2026,Cash,Insurance And Treatment,Expenditure,06-08-2025,3430,Matouia
+356,2025-2026,Cash,Food,Expenditure,06-08-2025,25350,Matouia
+357,2025-2026,Cash,Food,Expenditure,06-08-2025,25667,Matouia
+358,2025-2026,Cash,Food,Expenditure,06-08-2025,8200,Matouia
+359,2025-2026,Cash,Educational Equipment,Expenditure,06-08-2025,6000,Matouia
+360,2025-2026,Cash,Food,Expenditure,05-08-2025,18000,Matouia
+361,2025-2026,Cash,Educational Equipment,Expenditure,05-08-2025,450000,Matouia
+362,2025-2026,Cash,Educational Equipment,Expenditure,29-07-2025,810000,Matouia
+363,2025-2026,Cash,Food,Expenditure,07-08-2025,128690,Matouia
+364,2025-2026,Cash,Food,Expenditure,07-08-2025,64000,Matouia
+365,2025-2026,Cash,Food,Expenditure,07-08-2025,12800,Matouia
+366,2025-2026,Cash,Food,Expenditure,07-08-2025,130750,Matouia
+367,2025-2026,Cash,Trips,Expenditure,07-08-2025,336000,Matouia
+368,2025-2026,Cash,Food,Expenditure,07-08-2025,12800,Matouia
+369,2025-2026,Cash,Food,Expenditure,07-08-2025,11300,Matouia
+370,2025-2026,Cash,Equipment,Expenditure,07-08-2025,9500,Matouia
+371,2025-2026,Cash,Food,Expenditure,08-08-2025,20000,Matouia
+372,2025-2026,Cash,Food,Expenditure,08-08-2025,6000,Matouia
+373,2025-2026,Cash,Food,Expenditure,08-08-2025,10800,Matouia
+374,2025-2026,Cash,Educational Equipment,Expenditure,08-08-2025,7700,Matouia
+375,2025-2026,Cash,Equipment,Expenditure,08-08-2025,27000,Matouia
+376,2025-2026,Cash,Educational Equipment,Expenditure,08-08-2025,4000,Matouia
+377,2025-2026,Cash,Food,Expenditure,08-08-2025,13800,Matouia
+378,2025-2026,Cash,Food,Expenditure,08-08-2025,10000,Matouia
+379,2025-2026,Cash,Food,Expenditure,09-08-2025,57200,Matouia
+380,2025-2026,Cash,Trips,Expenditure,09-08-2025,1872000,Matouia
+381,2025-2026,Cash,Food,Expenditure,09-08-2025,420000,Matouia
+382,2025-2026,Cash,Food,Expenditure,09-08-2025,12600,Matouia
+383,2025-2026,Cash,Equipment,Expenditure,09-08-2025,8000,Matouia
+384,2025-2026,Cash,Insurance And Treatment,Expenditure,10-08-2025,10000,Matouia
+385,2025-2026,Cash,Food,Expenditure,10-08-2025,57000,Matouia
+386,2025-2026,Cash,Educational Equipment,Expenditure,10-08-2025,8500,Matouia
+387,2025-2026,Cash,Insurance And Treatment,Expenditure,10-08-2025,7980,Matouia
+388,2025-2026,Cash,Food,Expenditure,10-08-2025,17100,Matouia
+389,2025-2026,Cash,Food,Expenditure,10-08-2025,13900,Matouia
+390,2025-2026,Cash,Food,Expenditure,10-08-2025,77050,Matouia
+391,2025-2026,Cash,Educational Equipment,Expenditure,10-08-2025,1000,Matouia
+392,2025-2026,Cash,Insurance And Treatment,Expenditure,10-08-2025,11020,Matouia
+393,2025-2026,Cash,Food,Expenditure,10-08-2025,8700,Matouia
+394,2025-2026,Cash,Food,Expenditure,11-08-2025,9740,Matouia
+395,2025-2026,Cash,Food,Expenditure,11-08-2025,22800,Matouia
+396,2025-2026,Cash,Food,Expenditure,11-08-2025,57000,Matouia
+397,2025-2026,Cash,Food,Expenditure,11-08-2025,7600,Matouia
+398,2025-2026,Cash,Equipment,Expenditure,11-08-2025,9000,Matouia
+399,2025-2026,Cash,Trips,Expenditure,11-08-2025,400000,Matouia
+400,2025-2026,Cash,Food,Expenditure,12-08-2025,9620,Matouia
+401,2025-2026,Cash,Food,Expenditure,12-08-2025,84873,Matouia
+402,2025-2026,Cash,Food,Expenditure,12-08-2025,46350,Matouia
+403,2025-2026,Cash,Food,Expenditure,12-08-2025,9000,Matouia
+404,2025-2026,Cash,Educational Equipment,Expenditure,12-08-2025,23000,Matouia
+405,2025-2026,Cash,Food,Expenditure,12-08-2025,33000,Matouia
+406,2025-2026,Cash,Food,Expenditure,12-08-2025,15800,Matouia
+407,2025-2026,Cash,Educational Equipment,Expenditure,12-08-2025,3500,Matouia
+408,2025-2026,Cash,Insurance And Treatment,Expenditure,12-08-2025,25650,Matouia
+409,2025-2026,Cash,Equipment,Expenditure,12-08-2025,8800,Matouia
+410,2025-2026,Cash,Food,Expenditure,12-08-2025,60800,Matouia
+411,2025-2026,Cash,Food,Expenditure,12-08-2025,74800,Matouia
+412,2025-2026,Cash,Transport,Expenditure,12-08-2025,577400,Matouia
+413,2025-2026,Cash,Transport,Expenditure,12-08-2025,2500000,Matouia
+414,2025-2026,Cash,Different,Expenditure,12-08-2025,200000,Matouia
+415,2025-2026,Cash,Equipment,Expenditure,12-08-2025,200000,Matouia
+416,2025-2026,Cash,Support,Internal,11-08-2025,500000,Matouia

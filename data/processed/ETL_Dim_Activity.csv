@@ -1,0 +1,13 @@
+﻿Activity_PK,Activity_Type_Name,Season,Activity_Type_FK,Activity_Count,Activity_Budget
+1,Weekly Meetings,2023-2024,1,50,500
+2,Weekly Meetings,2024-2025,1,60,400
+3,Weekly Meetings,2025-2026,1,12,150
+4,Educational Outings,2023-2024,2,18,6200
+5,Educational Outings,2024-2025,2,22,8200
+6,Educational Outings,2025-2026,2,5,1400
+7,Environmental/Social Activities,2023-2024,3,22,4800
+8,Environmental/Social Activities,2024-2025,3,30,6500
+9,Environmental/Social Activities,2025-2026,3,0,0
+10,Regional/National Events,2023-2024,4,12,7200
+11,Regional/National Events,2024-2025,4,18,9800
+12,Regional/National Events,2025-2026,4,3,2100

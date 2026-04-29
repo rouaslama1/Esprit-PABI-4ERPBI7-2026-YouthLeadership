@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Scout Dashboard - API Check</title>
+  <style>
+    :root {
+      --red: #C0392B;
+      --red-dark: #922B21;
+      --bg: #F7F4F1;
+      --bg2: #EDEAE6;
+      --white: #FFFFFF;
+      --text: #1A1210;
+      --text-muted: #6B5B52;
+      --border: rgba(192, 57, 43, 0.15);
+      --shadow: 0 8px 40px rgba(192, 57, 43, 0.14);
+      --radius: 16px;
+      --radius-sm: 10px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: "DM Sans", Arial, sans-serif;
+      background: linear-gradient(180deg, var(--bg) 0%, #f3eeea 100%);
+      color: var(--text);
+      min-height: 100vh;
+      padding: 28px;
+    }
+    .page { max-width: 980px; margin: 0 auto; }
+    .hero {
+      background: linear-gradient(135deg, #7B1A14 0%, var(--red-dark) 45%, var(--red) 100%);
+      color: var(--white);
+      border-radius: var(--radius);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      padding: 28px;
+      box-shadow: var(--shadow);
+      margin-bottom: 18px;
+    }
+    h1 { font-size: 32px; margin-bottom: 8px; }
+    .muted { color: #f0ded9; max-width: 720px; line-height: 1.7; }
+    .content {
+      background: var(--white);
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: 0 4px 24px rgba(192, 57, 43, 0.08);
+      padding: 22px;
+    }
+    .card {
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px;
+      background: linear-gradient(135deg, #fff 0%, #fdf9f7 100%);
+    }
+    h2 { color: var(--red-dark); margin-bottom: 6px; }
+    .helper { color: var(--text-muted); line-height: 1.6; margin-bottom: 14px; }
+    code { background: var(--bg2); border-radius: 6px; padding: 2px 6px; }
+    button {
+      padding: 11px 16px;
+      border: none;
+      border-radius: var(--radius-sm);
+      background: var(--red);
+      color: var(--white);
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.2s ease;
+    }
+    button:hover {
+      background: var(--red-dark);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 16px rgba(192, 57, 43, 0.3);
+    }
+    button:disabled {
+      opacity: 0.7;
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: none;
+    }
+    pre {
+      margin-top: 14px;
+      background: #f6f8fa;
+      border-radius: var(--radius-sm);
+      border: 1px solid #e4e7ea;
+      padding: 14px;
+      overflow: auto;
+      min-height: 160px;
+      line-height: 1.45;
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <section class="hero">
+      <h1>Web App Placeholder</h1>
+      <p class="muted">
+        This page is intentionally minimal. It only verifies that the prediction API is reachable and returns a response.
+      </p>
+    </section>
+    <section class="content">
+      <div class="card">
+        <h2>Check API</h2>
+        <p class="helper">Click to call <code>/predict</code> with a sample payload (<code>model_type=budget</code>).</p>
+        <button id="call-api-btn" onclick="checkApi()">Run API Call</button>
+        <pre id="api-result">No request sent yet.</pre>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const API_BASE_URL = window.API_BASE_URL || "http://localhost:8010";
+    async function checkApi() {
+      const btn = document.getElementById("call-api-btn");
+      const output = document.getElementById("api-result");
+      btn.disabled = true;
+      output.textContent = "Calling API...";
+      try {
+        const payload = {
+          model_type: "budget",
+          features: {
+            flowtype: 1,
+            participants: 30,
+            budget_sub_category: 2,
+            budget_month: 6,
+            duration_days: 3,
+            season: 2024
+          }
+        };
+        const response = await fetch(`${API_BASE_URL}/predict`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload)
+        });
+        const body = await response.json();
+        output.textContent = JSON.stringify(
+          { status_code: response.status, response: body },
+          null,
+          2
+        );
+      } catch (error) {
+        output.textContent = `API call failed: ${error.message}`;
+      } finally {
+        btn.disabled = false;
+      }
+    }
+  </script>
+</body>
+</html>

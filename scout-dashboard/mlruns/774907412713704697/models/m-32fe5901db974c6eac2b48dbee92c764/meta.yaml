@@ -1,0 +1,10 @@
+artifact_location: file:///C:/Users/ASUS/Desktop/MLOPS/scout-dashboard/mlruns/774907412713704697/models/m-32fe5901db974c6eac2b48dbee92c764/artifacts
+creation_timestamp: 1777222404186
+experiment_id: '774907412713704697'
+last_updated_timestamp: 1777222430357
+model_id: m-32fe5901db974c6eac2b48dbee92c764
+model_type: null
+name: cluster_kmeans
+source_run_id: d786e3bbe67b46239f535091fd594e2f
+status: 2
+status_message: null

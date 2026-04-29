@@ -1,0 +1,10 @@
+artifact_location: file:///C:/Users/ASUS/Desktop/MLOPS/scout-dashboard/mlruns/774907412713704697/models/m-15d46bac878d4f6eb9574f4c66674b73/artifacts
+creation_timestamp: 1777424197840
+experiment_id: '774907412713704697'
+last_updated_timestamp: 1777424208069
+model_id: m-15d46bac878d4f6eb9574f4c66674b73
+model_type: null
+name: budget_rf
+source_run_id: c367332ed0654ac8b79702668aa22e71
+status: 2
+status_message: null

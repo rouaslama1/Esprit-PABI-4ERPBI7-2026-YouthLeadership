@@ -1,0 +1,10 @@
+artifact_location: file:///C:/Users/ASUS/Desktop/MLOPS/scout-dashboard/mlruns/774907412713704697/models/m-1b4e6176244a4d82bd11eee9e4a4f318/artifacts
+creation_timestamp: 1777222809629
+experiment_id: '774907412713704697'
+last_updated_timestamp: 1777222818170
+model_id: m-1b4e6176244a4d82bd11eee9e4a4f318
+model_type: null
+name: classify_lr
+source_run_id: 8600bf4d8cd642da9c176d8b22bac0dd
+status: 2
+status_message: null

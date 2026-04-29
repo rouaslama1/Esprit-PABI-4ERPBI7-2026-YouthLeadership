@@ -1,0 +1,33 @@
+services:
+  trainer:
+    build:
+      context: .
+      dockerfile: Dockerfile.api
+    command: python -m mlops.training_pipeline --runs 2
+    volumes:
+      - ./mlruns:/app/mlruns
+      - ./model_registry:/app/model_registry
+
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile.api
+    depends_on:
+      trainer:
+        condition: service_completed_successfully
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./model_registry:/app/model_registry
+      - ./mlruns:/app/mlruns
+
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile.web
+    depends_on:
+      - api
+    environment:
+      - PREDICTION_API_URL=http://api:8000
+    ports:
+      - "5050:5050"

@@ -1,0 +1,23 @@
+artifact_path: file:///C:/Users/ASUS/Desktop/MLOPS/scout-dashboard/mlruns/774907412713704697/models/m-5e4a4a97c2864f6ebd347a9a53fe1b1a/artifacts
+flavors:
+  python_function:
+    env:
+      conda: conda.yaml
+      virtualenv: python_env.yaml
+    loader_module: mlflow.sklearn
+    model_path: model.pkl
+    predict_fn: predict
+    python_version: 3.13.11
+  sklearn:
+    code: null
+    pickled_model: model.pkl
+    serialization_format: cloudpickle
+    sklearn_version: 1.8.0
+    skops_trusted_types: null
+mlflow_version: 3.11.1
+model_id: m-5e4a4a97c2864f6ebd347a9a53fe1b1a
+model_size_bytes: 1377
+model_uuid: m-5e4a4a97c2864f6ebd347a9a53fe1b1a
+prompts: null
+run_id: c367332ed0654ac8b79702668aa22e71
+utc_time_created: '2026-04-29 00:56:25.044560'

@@ -1,0 +1,8 @@
+{
+  "model_name": "cluster_kmeans",
+  "run_id": "8600bf4d8cd642da9c176d8b22bac0dd",
+  "timestamp_utc": "20260426_165950",
+  "metrics": {
+    "silhouette_score": 0.8409313090633684
+  }
+}

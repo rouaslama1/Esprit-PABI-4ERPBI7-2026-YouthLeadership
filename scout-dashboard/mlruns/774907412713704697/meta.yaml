@@ -1,0 +1,8 @@
+artifact_location: file:///C:/Users/ASUS/Desktop/MLOPS/scout-dashboard/mlruns/774907412713704697
+creation_time: 1777222373194
+experiment_id: '774907412713704697'
+last_update_time: 1777222373194
+lifecycle_stage: active
+name: scout_dashboard_models
+trace_location: null
+workspace: default

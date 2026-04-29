@@ -1,0 +1,14 @@
+artifact_uri: file:///C:/Users/ASUS/Desktop/MLOPS/scout-dashboard/mlruns/774907412713704697/48b344c6d7914b4599ff14f41ec75535/artifacts
+end_time: 1777225594182
+entry_point_name: ''
+experiment_id: '774907412713704697'
+lifecycle_stage: active
+run_id: 48b344c6d7914b4599ff14f41ec75535
+run_name: pipeline_run_1
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1777225564786
+status: 3
+tags: []
+user_id: T4rek

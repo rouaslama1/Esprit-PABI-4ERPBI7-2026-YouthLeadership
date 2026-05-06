@@ -1,0 +1,732 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Scout Dashboard — Grombalia</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
+  <style>
+    :root {
+      --red: #C0392B;
+      --red-dark: #922B21;
+      --red-light: #E74C3C;
+      --red-glow: rgba(192,57,43,0.12);
+      --bg: #F7F4F1;
+      --bg2: #EDEAE6;
+      --white: #FFFFFF;
+      --text: #1A1210;
+      --text-muted: #6B5B52;
+      --border: rgba(192,57,43,0.15);
+      --shadow: 0 4px 24px rgba(192,57,43,0.08);
+      --shadow-lg: 0 8px 40px rgba(192,57,43,0.14);
+      --radius: 16px;
+      --radius-sm: 10px;
+    }
+    * { box-sizing:border-box; margin:0; padding:0; }
+    body { font-family:'DM Sans',sans-serif; background:var(--bg); color:var(--text); min-height:100vh; }
+    .sidebar { position:fixed; top:0; left:0; width:240px; height:100vh; background:var(--white); border-right:1.5px solid var(--border); display:flex; flex-direction:column; z-index:100; box-shadow:4px 0 24px rgba(192,57,43,0.06); }
+    .sidebar-brand { padding:28px 20px 20px; display:flex; align-items:center; gap:12px; border-bottom:1px solid var(--border); }
+    .sidebar-logo { width:44px; height:44px; display:flex; align-items:center; justify-content:center; background:var(--red); border-radius:50%; color:white; font-size:20px; flex-shrink:0; }
+    .sidebar-brand-text h2 { font-family:'Cinzel',serif; font-size:12px; color:var(--red-dark); font-weight:700; letter-spacing:0.04em; line-height:1.3; }
+    .sidebar-brand-text p { font-size:10px; color:var(--text-muted); margin-top:2px; }
+    .sidebar-nav { padding:16px 12px; flex:1; overflow-y:auto; }
+    .nav-section-label { font-size:9.5px; font-weight:600; color:var(--text-muted); letter-spacing:0.12em; text-transform:uppercase; padding:10px 8px 6px; }
+    .nav-item { display:flex; align-items:center; gap:10px; padding:10px 12px; border-radius:var(--radius-sm); font-size:13px; font-weight:500; color:var(--text-muted); cursor:pointer; transition:all 0.2s; margin-bottom:2px; border:1px solid transparent; }
+    .nav-item:hover { background:var(--red-glow); color:var(--red-dark); }
+    .nav-item.active { background:var(--red); color:white; }
+    .nav-icon { font-size:16px; flex-shrink:0; }
+    .sidebar-footer { padding:16px; border-top:1px solid var(--border); }
+    .sidebar-footer p { font-size:10px; color:var(--text-muted); text-align:center; line-height:1.5; }
+    .main { margin-left:240px; min-height:100vh; }
+    .topbar { position:sticky; top:0; z-index:50; background:rgba(247,244,241,0.94); backdrop-filter:blur(12px); padding:16px 32px; display:flex; align-items:center; justify-content:space-between; border-bottom:1px solid var(--border); }
+    .topbar h1 { font-family:'Cinzel',serif; font-size:16px; color:var(--red-dark); font-weight:700; letter-spacing:0.02em; }
+    .topbar-badge { background:var(--red); color:white; padding:5px 14px; border-radius:20px; font-size:11px; font-weight:600; letter-spacing:0.04em; }
+    .content { padding:28px 32px; }
+    .view { display:none; animation:fadeIn 0.3s ease; }
+    .view.active { display:block; }
+    @keyframes fadeIn { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:translateY(0)} }
+    .hero { background:linear-gradient(135deg, #7B1A14 0%, var(--red-dark) 40%, var(--red) 80%, #E8503A 100%); border-radius:var(--radius); padding:40px; color:white; position:relative; overflow:hidden; margin-bottom:28px; }
+    .hero::before { content:''; position:absolute; top:-50px; right:-50px; width:240px; height:240px; background:rgba(255,255,255,0.05); border-radius:50%; }
+    .hero::after { content:''; position:absolute; bottom:-70px; right:90px; width:180px; height:180px; background:rgba(255,255,255,0.04); border-radius:50%; }
+    .hero-emblem { font-size:56px; margin-bottom:14px; display:block; filter:drop-shadow(0 4px 12px rgba(0,0,0,0.3)); }
+    .hero h2 { font-family:'Cinzel',serif; font-size:26px; font-weight:700; margin-bottom:8px; }
+    .hero p { font-size:13.5px; opacity:0.88; max-width:540px; line-height:1.65; }
+    .hero-cards { display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:16px; margin-top:26px; position:relative; z-index:1; }
+    .hero-card { background:rgba(255,255,255,0.14); border:1px solid rgba(255,255,255,0.22); border-radius:16px; padding:18px; cursor:pointer; transition:transform 0.2s ease, background 0.2s ease; }
+    .hero-card:hover { transform:translateY(-2px); background:rgba(255,255,255,0.18); }
+    .hero-card h3 { font-size:15px; margin-bottom:6px; }
+    .hero-card p { font-size:12px; opacity:0.85; line-height:1.55; }
+    .hero-card .card-icon { font-size:22px; margin-bottom:10px; display:inline-block; }
+    .hero-stats { display:flex; gap:28px; margin-top:24px; position:relative; z-index:1; }
+    .hero-stat .num { font-family:'Cinzel',serif; font-size:30px; font-weight:700; }
+    .hero-stat .lbl { font-size:10px; opacity:0.75; letter-spacing:0.08em; text-transform:uppercase; }
+    #view-budget .two-col { align-items:stretch; grid-template-columns:repeat(2,minmax(280px,1fr)); margin-bottom:20px; }
+    #view-budget .budget-intro { font-size:13px; color:var(--text-muted); margin-bottom:20px; line-height:1.55; }
+    #view-budget .budget-fields { display:flex; flex-direction:column; gap:0; }
+    #view-budget .budget-field-group {
+      padding:16px 0 18px;
+      border-bottom:1px solid var(--border);
+    }
+    #view-budget .budget-field-group:first-child { padding-top:0; }
+    #view-budget .budget-field-group:last-of-type { border-bottom:none; padding-bottom:2px; }
+    #view-budget .budget-field-group-title {
+      font-size:10px;
+      font-weight:700;
+      letter-spacing:0.11em;
+      text-transform:uppercase;
+      color:var(--text-muted);
+      margin-bottom:12px;
+    }
+    #view-budget .budget-grid {
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:14px 18px;
+      align-items:start;
+    }
+    #view-budget .budget-grid .field { display:flex; flex-direction:column; gap:6px; min-width:0; }
+    #view-budget .budget-grid label { margin-bottom:0; }
+    #view-budget input[type="number"],
+    #view-budget select {
+      min-height:44px;
+      width:100%;
+      box-sizing:border-box;
+    }
+    #view-budget select {
+      cursor:pointer;
+      appearance:auto;
+      -webkit-appearance:menulist;
+    }
+    #view-budget .budget-input-panel .panel-actions { margin-top:22px; padding-top:4px; }
+    #view-budget .result-box { margin-top:20px; }
+    @media (max-width:640px) {
+      #view-budget .budget-grid { grid-template-columns:1fr; }
+      #view-budget .two-col { grid-template-columns:1fr; }
+    }
+    #view-budget .chart-budget-inner {
+      position:relative;
+      height:260px;
+      padding:16px 12px 8px;
+      background:linear-gradient(180deg,rgba(192,57,43,0.04) 0%,transparent 45%);
+      border-radius:var(--radius-sm);
+      border:1px solid var(--border);
+    }
+    #view-budget .chart-budget-inner .chart-container { height:100%; min-height:0; }
+    .model-info-wrap {
+      font-size:11px;
+      color:var(--text-muted);
+      margin-top:10px;
+      padding:8px 10px;
+      background:rgba(192,57,43,0.05);
+      border-radius:var(--radius-sm);
+      border:1px solid rgba(192,57,43,0.1);
+      line-height:1.45;
+    }
+    .stats-row { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin-bottom:24px; }
+    .stat-card { background:var(--white); border-radius:var(--radius); border:1.5px solid var(--border); padding:20px; box-shadow:var(--shadow); }
+    .sc-icon { font-size:22px; margin-bottom:10px; }
+    .sc-num { font-family:'Cinzel',serif; font-size:26px; font-weight:700; color:var(--red-dark); }
+    .sc-lbl { font-size:11px; color:var(--text-muted); margin-top:2px; }
+    .sc-change { font-size:11px; font-weight:600; margin-top:6px; }
+    .sc-change.up { color:#27AE60; }
+    .sc-change.dn { color:var(--red); }
+    .model-cards { display:grid; grid-template-columns:repeat(2,1fr); gap:16px; }
+    .model-card { background:var(--white); border-radius:var(--radius); padding:24px; cursor:pointer; border:1.5px solid var(--border); transition:all 0.25s; position:relative; overflow:hidden; box-shadow:var(--shadow); }
+    .model-card:hover { transform:translateY(-3px); box-shadow:var(--shadow-lg); border-color:var(--red); }
+    .card-accent { position:absolute; top:0; left:0; right:0; height:3px; background:var(--red); }
+    .card-tag { font-size:9.5px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:var(--red); margin-bottom:8px; }
+    .card-title { font-family:'Cinzel',serif; font-size:15px; font-weight:600; color:var(--text); margin-bottom:8px; }
+    .card-desc { font-size:12.5px; color:var(--text-muted); line-height:1.6; }
+    .card-icon { font-size:30px; margin-bottom:10px; }
+    .card-arrow { position:absolute; bottom:18px; right:18px; color:var(--red); font-size:18px; opacity:0; transition:opacity 0.2s; }
+    .model-card:hover .card-arrow { opacity:1; }
+    .panel { background:var(--white); border-radius:var(--radius); border:1.5px solid var(--border); box-shadow:var(--shadow); overflow:hidden; margin-bottom:20px; }
+    .panel-header { padding:16px 24px; border-bottom:1px solid var(--border); display:flex; align-items:center; justify-content:space-between; }
+    .panel-header h3 { font-family:'Cinzel',serif; font-size:13.5px; font-weight:600; color:var(--red-dark); }
+    .panel-body { padding:24px; }
+    .two-col { display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-bottom:20px; }
+    .three-col { display:grid; grid-template-columns:1fr 1fr 1fr; gap:20px; margin-bottom:20px; }
+    .section-header { margin-bottom:22px; }
+    .section-header h2 { font-family:'Cinzel',serif; font-size:20px; color:var(--red-dark); font-weight:700; }
+    .section-header p { font-size:13px; color:var(--text-muted); margin-top:4px; }
+    label { display:block; font-size:11px; font-weight:600; color:var(--text-muted); margin-bottom:5px; letter-spacing:0.04em; text-transform:uppercase; }
+    input, select { width:100%; padding:11px 14px; border:1.5px solid var(--border); border-radius:var(--radius-sm); font-family:'DM Sans',sans-serif; font-size:13.5px; background:var(--bg); color:var(--text); transition:border-color 0.2s; outline:none; }
+    input:focus, select:focus { border-color:var(--red); background:white; }
+    .btn { padding:12px 28px; border:none; border-radius:var(--radius-sm); font-family:'DM Sans',sans-serif; font-size:14px; font-weight:600; cursor:pointer; transition:all 0.2s; letter-spacing:0.02em; }
+    .btn-primary { background:var(--red); color:white; }
+    .btn-primary:hover { background:var(--red-dark); transform:translateY(-1px); box-shadow:0 4px 16px rgba(192,57,43,0.35); }
+    .btn-primary:disabled { opacity:0.6; cursor:not-allowed; transform:none; }
+    .result-box { display:none; margin-top:20px; background:linear-gradient(135deg,#FEF9F8,#FBF0EE); border:1.5px solid rgba(192,57,43,0.25); border-radius:var(--radius); padding:22px; animation:fadeIn 0.3s ease; }
+    .result-box.show { display:block; }
+    .result-main { font-family:'Cinzel',serif; font-size:30px; color:var(--red-dark); font-weight:700; }
+    .result-label { font-size:10.5px; color:var(--text-muted); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:4px; }
+    .result-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-top:14px; }
+    .result-item { text-align:center; background:white; padding:12px; border-radius:var(--radius-sm); border:1px solid var(--border); }
+    .result-item .val { font-weight:700; font-size:17px; color:var(--red-dark); }
+    .result-item .lbl { font-size:10px; color:var(--text-muted); margin-top:3px; }
+    .loading { display:inline-block; width:16px; height:16px; border:2.5px solid rgba(255,255,255,0.4); border-top-color:white; border-radius:50%; animation:spin 0.7s linear infinite; vertical-align:middle; margin-left:8px; }
+    @keyframes spin { to{transform:rotate(360deg)} }
+    .badge { display:inline-block; padding:3px 10px; border-radius:12px; font-size:11px; font-weight:600; }
+    .badge-high { background:#D5F5E3; color:#1E8449; }
+    .badge-med  { background:#FDEBD0; color:#D35400; }
+    .badge-low  { background:#FADBD8; color:#922B21; }
+    .chart-container { position:relative; height:260px; }
+    .back-btn { display:inline-flex; align-items:center; gap:8px; font-size:13px; color:var(--text-muted); cursor:pointer; margin-bottom:20px; padding:8px 0; }
+    .back-btn:hover { color:var(--red); }
+    .advice-box { background:#FBF0EE; border-left:3px solid var(--red); border-radius:0 var(--radius-sm) var(--radius-sm) 0; padding:12px 16px; margin-top:12px; font-size:13px; line-height:1.6; }
+    .info-pill { background:var(--bg2); border-radius:var(--radius-sm); padding:14px 16px; font-size:12.5px; line-height:1.7; }
+    .info-pill .pill-title { font-size:10px; color:var(--text-muted); text-transform:uppercase; letter-spacing:0.08em; margin-bottom:7px; font-weight:600; }
+    .prob-row { margin-bottom:10px; }
+    .prob-row .prob-label { display:flex; justify-content:space-between; font-size:12px; margin-bottom:5px; font-weight:500; }
+    .prob-bar-track { height:8px; background:var(--bg2); border-radius:4px; overflow:hidden; }
+    .prob-bar-fill { height:100%; border-radius:4px; transition:width 0.7s ease; }
+    .panel-actions { display:flex; align-items:center; justify-content:flex-start; gap:12px; margin-top:18px; }
+    .panel-actions .btn { margin:0; }
+    .cluster-tile { padding:14px; border-radius:var(--radius-sm); border:2px solid transparent; }
+    .cluster-tile.active { border-color:var(--red); }
+    .cluster-tile h4 { font-size:12.5px; font-weight:700; margin-bottom:4px; }
+    .cluster-tile p { font-size:11px; color:var(--text-muted); line-height:1.5; }
+    #result-api-test.result-box { padding:20px 22px; }
+    #result-api-test .api-test-line-red {
+      font-family:'Cinzel',serif;
+      font-size:clamp(15px,2.4vw,22px);
+      font-weight:700;
+      color:var(--red);
+      letter-spacing:0.02em;
+      margin:0 0 10px 0;
+      line-height:1.25;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+    }
+    #result-api-test .api-test-line-black {
+      font-family:'DM Sans',sans-serif;
+      font-size:13px;
+      font-weight:400;
+      color:var(--text);
+      margin:0;
+      padding:0;
+      line-height:1.45;
+      background:none;
+      border:none;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+    }
+    #chatbot-root { min-height:420px; width:100%; }
+  </style>
+</head>
+<body>
+  <nav class="sidebar">
+    <div class="sidebar-brand">
+      <div class="sidebar-logo">⚜</div>
+      <div class="sidebar-brand-text">
+        <h2>Scout Dashboard</h2>
+        <p>Grombalia Region</p>
+      </div>
+    </div>
+    <div class="sidebar-nav">
+      <div class="nav-section-label">Overview</div>
+      <div class="nav-item active" data-view="home" onclick="showView('home', this)"><span class="nav-icon">🏠</span> Dashboard Home</div>
+      <div class="nav-section-label">Models</div>
+      <div class="nav-item" data-view="forecast" onclick="showView('forecast', this)"><span class="nav-icon">📈</span> Membership Forecast</div>
+      <div class="nav-item" data-view="cluster" onclick="showView('cluster', this)"><span class="nav-icon">🎯</span> Media Clustering</div>
+      <div class="nav-item" data-view="budget" onclick="showView('budget', this)"><span class="nav-icon">💰</span> Budget Estimation</div>
+      <div class="nav-item" data-view="classify" onclick="showView('classify', this)"><span class="nav-icon">🏅</span> Unit Classifier</div>
+      <div class="nav-section-label">Assistance</div>
+      <div class="nav-item" data-view="chatbot" onclick="showView('chatbot', this)"><span class="nav-icon">💬</span> Chat assistant</div>
+      <div class="nav-section-label">Tools</div>
+      <div class="nav-item" data-view="api-test" onclick="showView('api-test', this)"><span class="nav-icon">🧪</span> API Test</div>
+    </div>
+    <div class="sidebar-footer"><p>Powered by Scout Analytics</p></div>
+  </nav>
+
+  <div class="main">
+    <div class="topbar">
+      <h1>SCOUT DASHBOARD — GROMBALIA</h1>
+      <span class="topbar-badge">📊 4 Models</span>
+    </div>
+    <div class="content">
+
+      <section id="view-home" class="view active">
+        <div class="hero">
+          <span class="hero-emblem">⚜</span>
+          <h2>Scout Analytics Platform</h2>
+          <p>Interactive insights for scout leadership: member trends, activity performance, and budget visibility.</p>
+          <div class="hero-cards">
+            <div class="hero-card" onclick="showView('forecast', this)">
+              <div class="card-icon">📈</div>
+              <h3>Membership Forecast</h3>
+              <p>Estimate future member counts with one click.</p>
+            </div>
+            <div class="hero-card" onclick="showView('cluster', this)">
+              <div class="card-icon">🎯</div>
+              <h3>Media Segmentation</h3>
+              <p>Classify engagement groups and compare content performance.</p>
+            </div>
+            <div class="hero-card" onclick="showView('budget', this)">
+              <div class="card-icon">💰</div>
+              <h3>Budget Estimation</h3>
+              <p>Project activity costs per person and total budget.</p>
+            </div>
+            <div class="hero-card" onclick="showView('classify', this)">
+              <div class="card-icon">🏅</div>
+              <h3>Unit Classifier</h3>
+              <p>Assess unit activity level and receive actionable advice.</p>
+            </div>
+            <div class="hero-card" onclick="showView('api-test', this)">
+              <div class="card-icon">🧪</div>
+              <h3>API Test</h3>
+              <p>Check API availability and get a sample prediction.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel" style="padding:0; border:none; box-shadow:none; background:transparent;">
+          <div class="chart-container" style="height:560px;">
+          <iframe title="scoutV3 (2)" width="1140" height="541.25" src="https://app.powerbi.com/reportEmbed?reportId=967e74dd-fc15-42bd-8a03-e73e3ce9f097&autoAuth=true&ctid=604f1a96-cbe8-43f8-abbf-f8eaf5d85730" frameborder="0" allowFullScreen="true"></iframe>          </div>
+        </div>
+      </section>
+
+      <section id="view-forecast" class="view">
+        <div class="back-btn" onclick="showView('home')">← Back to Dashboard</div>
+        <div class="section-header"><h2>📈 Membership Forecast</h2><p>Predict total member count for the next season.</p></div>
+        <div class="two-col" style="margin-bottom:20px;">
+          <div class="panel"><div class="panel-header"><h3>Forecast generator</h3></div><div class="panel-body"><p style="font-size:13px;color:var(--text-muted);margin-bottom:18px;">Use the model to estimate membership and compare to past seasons.</p><div class="panel-actions"><button class="btn btn-primary" id="fc-btn" onclick="runForecast()">Generate 2026-2027 Forecast</button></div><div class="result-box" id="result-forecast"><div class="result-label">Forecasted Members</div><div class="result-main" id="fc-value">—</div><div style="font-size:12px;color:var(--text-muted);margin-top:4px;" id="fc-change">—</div><div class="advice-box" id="fc-trend">—</div></div></div></div>
+          <div class="panel"><div class="panel-header"><h3>Forecast chart</h3></div><div class="panel-body"><div class="chart-container"><canvas id="chart-forecast"></canvas></div></div></div>
+        </div>
+        <div class="panel"><div class="panel-header"><h3>Model summary</h3></div><div class="panel-body"><div class="three-col"><div class="info-pill"><div class="pill-title">What it does</div>Uses past membership trends to forecast next season.</div><div class="info-pill"><div class="pill-title">Why use it</div>Helps plan camp size, leadership, and resource needs.</div><div class="info-pill"><div class="pill-title">Note</div>This estimate is a guide; more data improves confidence.</div></div></div></div>
+      </section>
+
+      <section id="view-cluster" class="view">
+        <div class="back-btn" onclick="showView('home')">← Back to Dashboard</div>
+        <div class="section-header"><h2>🎯 Media Segmentation</h2><p>Classify a scout account into visibility groups to improve digital strategy.</p></div>
+        <div class="two-col"><div class="panel"><div class="panel-header"><h3>Input metrics</h3></div><div class="panel-body"><div class="two-col"><div><label>Views Count</label><input type="number" id="c-views" value="5000"></div><div><label>Likes Count</label><input type="number" id="c-likes" value="300"></div></div><div class="two-col"><div><label>Comments Count</label><input type="number" id="c-comments" value="20"></div><div><label>Engagement Rate</label><input type="number" id="c-engagement" step="0.001" value="0.065"></div></div><div><label>Visibility Index</label><input type="number" id="c-visibility" step="0.01" value="0.30"></div><div class="panel-actions"><button class="btn btn-primary" onclick="runCluster(this)">Classify Account</button></div><div class="result-box" id="result-cluster"><div class="result-label">Cluster assignment</div><div class="result-main" id="cl-name">—</div><div style="font-size:13px;color:var(--text-muted);margin-top:10px;line-height:1.6;" id="cl-desc">—</div><div class="advice-box" id="cl-rec">—</div></div></div></div><div class="panel"><div class="panel-header"><h3>Cluster overview</h3></div><div class="panel-body"><div class="chart-container"><canvas id="chart-cluster"></canvas></div><div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px;"><div class="cluster-tile" id="ct-0"><h4>Cluster 0 — Low Visibility</h4><p>Standard performance. Focus on content quality and posting frequency.</p></div><div class="cluster-tile" id="ct-1"><h4>Cluster 1 — High Visibility</h4><p>Strong reach. Keep replicating the successful format and engagement style.</p></div></div></div></div></div>
+      </section>
+
+      <section id="view-budget" class="view">
+        <div class="back-btn" onclick="showView('home')">← Back to Dashboard</div>
+        <div class="section-header"><h2>💰 Budget Estimation</h2><p>Estimate cost per person and total budget for Scout activities.</p></div>
+        <div class="two-col">
+          <div class="panel budget-input-panel">
+            <div class="panel-header"><h3>Activity details</h3></div>
+            <div class="panel-body">
+              <p class="budget-intro">Use the model to estimate spending from activity parameters and compare scenarios.</p>
+              <div class="budget-fields">
+                <div class="budget-field-group">
+                  <div class="budget-field-group-title">Activity context</div>
+                  <div class="budget-grid">
+                    <div class="field">
+                      <label for="b-flowtype">Flow Type</label>
+                      <select id="b-flowtype" aria-label="Flow Type"><option value="1">Expenses</option><option value="2">Income</option></select>
+                    </div>
+                    <div class="field">
+                      <label for="b-season">Season</label>
+                      <select id="b-season" aria-label="Season"><option value="2023">2023</option><option value="2024" selected>2024</option><option value="2025">2025</option><option value="2026">2026</option></select>
+                    </div>
+                  </div>
+                </div>
+                <div class="budget-field-group">
+                  <div class="budget-field-group-title">Group &amp; duration</div>
+                  <div class="budget-grid">
+                    <div class="field">
+                      <label for="b-participants">Participants</label>
+                      <input type="number" id="b-participants" min="1" step="1" inputmode="numeric" value="30" aria-label="Participants">
+                    </div>
+                    <div class="field">
+                      <label for="b-duration">Duration (Days)</label>
+                      <input type="number" id="b-duration" min="1" step="1" inputmode="numeric" value="3" aria-label="Duration in days">
+                    </div>
+                  </div>
+                </div>
+                <div class="budget-field-group">
+                  <div class="budget-field-group-title">Budget coding</div>
+                  <div class="budget-grid">
+                    <div class="field">
+                      <label for="b-month">Budget Month</label>
+                      <input type="number" id="b-month" min="1" max="12" step="1" inputmode="numeric" value="6" aria-label="Budget month">
+                    </div>
+                    <div class="field">
+                      <label for="b-subcat">Budget Sub-Category</label>
+                      <input type="number" id="b-subcat" min="0" step="1" inputmode="numeric" value="2" aria-label="Budget sub-category">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="panel-actions"><button type="button" class="btn btn-primary" onclick="runBudget(this)">Estimate Budget</button></div>
+              <div class="result-box" id="result-budget">
+                <div class="result-label">Total Estimated Budget</div>
+                <div class="result-main" id="bg-total">—</div>
+                <div style="font-size:11px;color:var(--text-muted);margin-top:4px;">TND</div>
+                <div class="result-grid">
+                  <div class="result-item"><div class="val" id="bg-ppd">—</div><div class="lbl">Cost / person / day</div></div>
+                  <div class="result-item"><div class="val" id="bg-pax">—</div><div class="lbl">Participants</div></div>
+                  <div class="result-item"><div class="val" id="bg-days">—</div><div class="lbl">Days</div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="panel budget-guidance-panel">
+            <div class="panel-header"><h3>Budget guidance</h3></div>
+            <div class="panel-body">
+              <div class="chart-budget-inner">
+                <div class="chart-container"><canvas id="chart-budget"></canvas></div>
+              </div>
+              <div style="margin-top:16px;" class="info-pill"><div class="pill-title">Purpose</div>Estimates daily cost and total budget so you can compare activity scenarios.</div>
+            </div>
+          </div>
+        </div>
+        <div class="panel">
+          <div class="panel-header"><h3>Model summary</h3></div>
+          <div class="panel-body">
+            <div class="three-col">
+              <div class="info-pill"><div class="pill-title">What it does</div>Projects total budget and per-person daily cost from flow type, season, and group inputs.</div>
+              <div class="info-pill"><div class="pill-title">Why use it</div>Helps plan camps and outings with consistent, data-driven cost expectations.</div>
+              <div class="info-pill"><div class="pill-title">Note</div>This estimate is a guide; local prices and conditions may vary.</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="view-classify" class="view">
+        <div class="back-btn" onclick="showView('home')">← Back to Dashboard</div>
+        <div class="section-header"><h2>🏅 Unit Activity Classifier</h2><p>Classify each scout unit into activity levels and get practical recommendations.</p></div>
+        <div class="two-col"><div class="panel"><div class="panel-header"><h3>Unit inputs</h3></div><div class="panel-body"><div class="two-col"><div><label>Members Count</label><input type="number" id="e-members" value="30"></div><div><label>Leaders Count</label><input type="number" id="e-leaders" value="3"></div></div><div class="two-col"><div><label>Leader ratio</label><input type="number" id="e-ratio" step="0.01" value="0.10"></div><div><label>Activities/member</label><input type="number" id="e-apm" step="0.1" value="2.5"></div></div><div class="two-col"><div><label>Female ratio</label><input type="number" id="e-female" step="0.01" value="0.40"></div><div><label>Total activity count</label><input type="number" id="e-actcount" value="10"></div></div><div class="panel-actions"><button class="btn btn-primary" onclick="runClassify(this)">Classify Unit</button></div><div class="result-box" id="result-classify"><div class="result-label">Activity level</div><div style="display:flex;align-items:center;gap:14px;margin-top:4px;"><div class="result-main" id="cl2-level">—</div><span class="badge badge-low" id="cl2-badge">—</span></div><div class="advice-box" id="cl2-advice">—</div></div></div></div><div class="panel"><div class="panel-header"><h3>Probability outlook</h3></div><div class="panel-body"><div id="prob-bars" style="margin-bottom:20px;">Run the model to view probabilities.</div><div class="chart-container"><canvas id="chart-classify"></canvas></div><div style="margin-top:16px;" class="info-pill"><div class="pill-title">Note</div>This tool classifies unit activity levels and gives clear recommendations.</div></div></div></div>
+      </section>
+
+      <section id="view-api-test" class="view">
+        <div class="back-btn" onclick="showView('home')">← Back to Dashboard</div>
+        <div class="section-header"><h2>🧪 API Quick Test</h2><p>Verify the prediction API </p></div>
+        <div class="panel"><div class="panel-header"><h3>Run a sample prediction</h3></div><div class="panel-body"><p style="font-size:13px;color:var(--text-muted);margin-bottom:18px;">This test uses the budget model to confirm the API is reachable and returns a meaningful result.</p><div class="panel-actions"><button class="btn btn-primary" onclick="runApiTest(this)">Run API Test</button></div><div class="result-box result-box-api-test" id="result-api-test"><div class="api-test-line-red" id="api-message">No test performed yet.</div><div class="api-test-line-black" id="api-detail">Run the test to see health and model status.</div></div></div></div>
+      </section>
+
+      <section id="view-chatbot" class="view">
+        <div class="back-btn" onclick="showView('home')">← Back to Dashboard</div>
+        <div class="section-header"><h2>💬 Chat assistant</h2></div>
+        <div class="panel">
+          <div class="panel-body">
+            <div id="chatbot-root" aria-label="Chatbot embed region"></div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </div>
+
+  <script>
+    const API_OVERRIDE = window.API_BASE_URL || null;
+    const API_CANDIDATES = ["http://localhost:8010", "http://localhost:8000"];
+    let API = API_OVERRIDE;
+    let fcChart, clChart, bgChart, clsChart;
+
+    async function resolveApiBaseUrl() {
+      if (API) return API;
+      for (const candidate of API_CANDIDATES) {
+        try {
+          const res = await fetch(candidate + '/health', { method: 'GET' });
+          if (res.ok) {
+            API = candidate;
+            return API;
+          }
+        } catch (e) {
+          // Try next candidate
+        }
+      }
+      throw new Error('Prediction API not reachable on ports 8010 or 8000.');
+    }
+
+    function showView(id, el) {
+      document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+      document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+      const view = document.getElementById('view-' + id);
+      if (view) view.classList.add('active');
+      const navItem = el || document.querySelector(`.nav-item[data-view="${id}"]`);
+      if (navItem) navItem.classList.add('active');
+      if (id === 'forecast') initForecastChart();
+      if (id === 'cluster') initClusterChart();
+      if (id === 'budget') initBudgetChart();
+      if (id === 'classify') initClassifyChart();
+    }
+
+    async function getPrediction(payload) {
+      const apiBase = await resolveApiBaseUrl();
+      return fetch(apiBase + '/predict', {
+        method: 'POST',
+        headers: {'Content-Type':'application/json'},
+        body: JSON.stringify(payload)
+      }).then(async res => {
+        const text = await res.text();
+        let body;
+        try {
+          body = text ? JSON.parse(text) : {};
+        } catch (err) {
+          throw new Error(`API returned invalid JSON: ${text}`);
+        }
+        if (!res.ok) throw new Error(body.detail || body.message || `API error ${res.status}`);
+        return body;
+      });
+    }
+
+    function displayModelInfo(modelType, resultElementId) {
+      const resultBox = document.getElementById(resultElementId);
+      
+      let modelInfo = resultBox.querySelector('.model-info-wrap');
+      if (!modelInfo) {
+        modelInfo = document.createElement('div');
+        modelInfo.className = 'model-info-wrap model-info';
+        resultBox.appendChild(modelInfo);
+      }
+      
+      modelInfo.innerHTML = '<strong>Status:</strong> ✅ Executed successfully';
+    }
+
+    async function runForecast() {
+      const btn = document.getElementById('fc-btn');
+      btn.disabled = true; btn.textContent = 'Generating…';
+      try {
+        const body = await getPrediction({model_type:'forecast', features:{}});
+        const p = body.prediction;
+        document.getElementById('fc-value').textContent = p.forecast + ' members';
+        document.getElementById('fc-change').textContent = 'Change vs 2025-26: ' + (p.change_pct >= 0 ? '+' : '') + p.change_pct + '%';
+        document.getElementById('fc-trend').textContent = p.trend;
+        document.getElementById('result-forecast').classList.add('show');
+        displayModelInfo('forecast', 'result-forecast');
+        if (fcChart) {
+          fcChart.data.datasets[0].data = [163, 97, 83, p.forecast];
+          fcChart.update();
+        }
+      } catch (e) {
+        document.getElementById('fc-value').textContent = 'Error';
+        document.getElementById('fc-change').textContent = e.message;
+        document.getElementById('result-forecast').classList.add('show');
+      } finally {
+        btn.disabled = false; btn.textContent = 'Generate 2026-2027 Forecast';
+      }
+    }
+
+    async function runCluster(button) {
+      const btn = button || document.querySelector('#view-cluster .btn-primary');
+      btn.disabled = true;
+      btn.textContent = 'Classifying…';
+      try {
+        const features = {
+          views:+document.getElementById('c-views').value,
+          likes:+document.getElementById('c-likes').value,
+          comments:+document.getElementById('c-comments').value,
+          engagement_rate:+document.getElementById('c-engagement').value,
+          visibility_index:+document.getElementById('c-visibility').value
+        };
+        const body = await getPrediction({model_type:'cluster', features});
+        const p = body.prediction;
+        const currentPoint = {
+          x: Math.min(5, Math.max(0.5, features.likes / 1000 + features.engagement_rate * 6)),
+          y: Math.min(5, Math.max(0.5, features.views / 1200 + features.visibility_index * 4)),
+        };
+        document.getElementById('cl-name').textContent = p.cluster_name;
+        document.getElementById('cl-desc').textContent = p.description;
+        document.getElementById('cl-rec').textContent = p.recommendation;
+        if (clChart && clChart.data.datasets.length === 3) {
+          clChart.data.datasets[2].data = [currentPoint];
+          clChart.update();
+        }
+        document.getElementById('result-cluster').classList.add('show');
+        displayModelInfo('cluster', 'result-cluster');
+        document.getElementById('ct-0').classList.toggle('active', p.cluster === 0);
+        document.getElementById('ct-1').classList.toggle('active', p.cluster === 1);
+      } catch (e) {
+        document.getElementById('cl-name').textContent = 'Error';
+        document.getElementById('cl-desc').textContent = e.message;
+        document.getElementById('cl-rec').textContent = '';
+        document.getElementById('result-cluster').classList.add('show');
+      } finally {
+        btn.disabled = false;
+        btn.textContent = 'Classify Account';
+      }
+    }
+
+    async function runBudget(button) {
+      const btn = button || document.querySelector('#view-budget .btn-primary');
+      btn.disabled = true;
+      btn.textContent = 'Estimating…';
+      try {
+        const body = await getPrediction({model_type:'budget', features:{
+          flowtype:+document.getElementById('b-flowtype').value,
+          participants:+document.getElementById('b-participants').value,
+          budget_sub_category:+document.getElementById('b-subcat').value,
+          budget_month:+document.getElementById('b-month').value,
+          duration_days:+document.getElementById('b-duration').value,
+          season:+document.getElementById('b-season').value
+        }});
+        const p = body.prediction;
+        document.getElementById('bg-total').textContent = p.total_budget.toFixed(2) + ' TND';
+        document.getElementById('bg-ppd').textContent = p.cost_per_person_day.toFixed(2);
+        document.getElementById('bg-pax').textContent = p.participants;
+        document.getElementById('bg-days').textContent = p.duration;
+        if (bgChart) {
+          const base = Math.max(1, p.cost_per_person_day);
+          const ratios = [0.22, 0.18, 0.16, 0.14, 0.12];
+          const breakdown = ratios.map(r => Math.max(1, Math.round(base * r * 2)));
+          bgChart.data.datasets[0].data = breakdown;
+          bgChart.update();
+        }
+        document.getElementById('result-budget').classList.add('show');
+        displayModelInfo('budget', 'result-budget');
+      } catch (e) {
+        document.getElementById('bg-total').textContent = 'Error';
+        document.getElementById('bg-ppd').textContent = '-';
+        document.getElementById('bg-pax').textContent = '-';
+        document.getElementById('bg-days').textContent = '-';
+        document.getElementById('result-budget').classList.add('show');
+      } finally {
+        btn.disabled = false;
+        btn.textContent = 'Estimate Budget';
+      }
+    }
+
+    async function runClassify(button) {
+      const btn = button || document.querySelector('#view-classify .btn-primary');
+      btn.disabled = true;
+      btn.textContent = 'Classifying…';
+      try {
+        const body = await getPrediction({model_type:'classify', features:{
+          members_count:+document.getElementById('e-members').value,
+          leaders_count:+document.getElementById('e-leaders').value,
+          leaders_to_members_ratio:+document.getElementById('e-ratio').value,
+          activities_per_member:+document.getElementById('e-apm').value,
+          female_ratio:+document.getElementById('e-female').value,
+          activity_count:+document.getElementById('e-actcount').value
+        }});
+        const p = body.prediction;
+        document.getElementById('cl2-level').textContent = p.level_name;
+        const badge = document.getElementById('cl2-badge');
+        badge.textContent = p.level_name;
+        badge.className = 'badge ' + (p.level_name === 'High' ? 'badge-high' : p.level_name === 'Medium' ? 'badge-med' : 'badge-low');
+        document.getElementById('cl2-advice').textContent = p.advice;
+        const probs = p.probabilities;
+        document.getElementById('prob-bars').innerHTML = ['Low','Medium','High'].map(lvl => `<div class="prob-row"><div class="prob-label"><span>${lvl}</span><span>${probs[lvl]}%</span></div><div class="prob-bar-track"><div class="prob-bar-fill" style="width:${probs[lvl]}%;background:${lvl==='Low'?'#E74C3C':lvl==='Medium'?'#F39C12':'#27AE60'}"></div></div></div>`).join('');
+        clsChart.data.datasets[0].data = [probs.Low, probs.Medium, probs.High];
+        clsChart.update();
+        document.getElementById('result-classify').classList.add('show');
+        displayModelInfo('classify', 'result-classify');
+      } catch (e) {
+        document.getElementById('cl2-level').textContent = 'Error';
+        document.getElementById('cl2-advice').textContent = e.message;
+        document.getElementById('result-classify').classList.add('show');
+      } finally {
+        btn.disabled = false;
+        btn.textContent = 'Classify Unit';
+      }
+    }
+
+    async function runApiTest(button) {
+      const btn = button || document.querySelector('#view-api-test .btn-primary');
+      btn.disabled = true;
+      btn.textContent = 'Testing…';
+      try {
+        const apiBase = await resolveApiBaseUrl();
+        const healthRes = await fetch(apiBase + '/health');
+        if (!healthRes.ok) throw new Error(`Health check failed: ${healthRes.status}`);
+        const healthBody = await healthRes.json();
+
+        const body = await getPrediction({model_type:'budget', features:{flowtype:1, participants:30, budget_sub_category:2, budget_month:6, duration_days:3, season:2024}});
+        const p = body.prediction;
+        document.getElementById('api-message').textContent =
+          `API available — total estimate ${p.total_budget.toFixed(2)} TND (${p.cost_per_person_day.toFixed(2)} TND per person per day).`;
+        document.getElementById('api-detail').textContent =
+          `Health: ${healthBody.status || 'ok'} — API responded successfully on ${apiBase}. Model: budget_rf executed successfully.`;
+        document.getElementById('result-api-test').classList.add('show');
+      } catch (e) {
+        document.getElementById('api-message').textContent = 'API unavailable';
+        document.getElementById('api-detail').textContent = e.message || 'Start the FastAPI server on port 8010 or 8000.';
+        document.getElementById('result-api-test').classList.add('show');
+      } finally {
+        btn.disabled = false;
+        btn.textContent = 'Run API Test';
+      }
+    }
+
+    function initForecastChart() {
+      const ctx = document.getElementById('chart-forecast').getContext('2d');
+      if (fcChart) fcChart.destroy();
+      fcChart = new Chart(ctx, { type:'line', data:{ labels:['2023','2024','2025','2026'], datasets:[{ label:'Membership', data:[163,97,83,130], borderColor:'#C0392B', backgroundColor:'rgba(192,57,43,0.15)', tension:0.3, fill:true } ] }, options:{ responsive:true, maintainAspectRatio:false, animation:{duration:1000}, scales:{y:{beginAtZero:true,title:{display:true,text:'Members'}}, x:{grid:{display:false}}}, plugins:{legend:{display:false}} } });
+    }
+
+    function initClusterChart() {
+      const ctx = document.getElementById('chart-cluster').getContext('2d');
+      if (clChart) clChart.destroy();
+      clChart = new Chart(ctx, { type:'scatter', data:{ datasets:[ { label:'Low Visibility', data:[{x:1,y:1},{x:2,y:1.5},{x:1.5,y:0.8}], backgroundColor:'rgba(192,57,43,0.6)' }, { label:'High Visibility', data:[{x:4.5,y:4},{x:5,y:3.8},{x:4.8,y:4.2}], backgroundColor:'rgba(39,174,96,0.8)' }, { label:'Your input', data:[], backgroundColor:'rgba(41,128,185,0.9)', pointRadius:8, pointStyle:'rectRounded' } ] }, options:{ responsive:true, maintainAspectRatio:false, animation:{duration:1000,easing:'easeOutQuart'}, scales:{x:{title:{display:true,text:'Feature dimension 1'}}, y:{title:{display:true,text:'Feature dimension 2'}}}, plugins:{legend:{position:'bottom'}} } });
+    }
+
+    function initBudgetChart() {
+      const ctx = document.getElementById('chart-budget').getContext('2d');
+      if (bgChart) bgChart.destroy();
+      const barColors = ['rgba(192,57,43,0.88)','rgba(192,57,43,0.74)','rgba(192,57,43,0.60)','rgba(192,57,43,0.46)','rgba(192,57,43,0.34)'];
+      const tickFont = { family: "'DM Sans',sans-serif", size: 11 };
+      bgChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: ['Transport','Food','Accommodation','Equipment','Activities'],
+          datasets: [{
+            label: 'Cost per person / day',
+            data: [18,14,12,7,9],
+            backgroundColor: barColors,
+            borderColor: '#C0392B',
+            borderWidth: 1,
+            borderRadius: 8,
+            borderSkipped: false,
+            maxBarThickness: 44,
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          animation: { duration: 1000, easing: 'easeOutQuart' },
+          interaction: { mode: 'index', intersect: false },
+          scales: {
+            y: {
+              beginAtZero: true,
+              title: {
+                display: true,
+                text: 'TND',
+                font: { ...tickFont, weight: '600' },
+                color: '#6B5B52',
+              },
+              ticks: { font: tickFont, color: '#6B5B52', padding: 8 },
+              grid: { color: 'rgba(192,57,43,0.08)', drawBorder: false },
+              border: { display: false },
+            },
+            x: {
+              grid: { display: false, drawBorder: false },
+              ticks: { font: tickFont, color: '#6B5B52', maxRotation: 0, autoSkip: false },
+              border: { display: false },
+            },
+          },
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              backgroundColor: 'rgba(26,18,16,0.92)',
+              titleFont: tickFont,
+              bodyFont: tickFont,
+              padding: 12,
+              cornerRadius: 8,
+              displayColors: false,
+              callbacks: {
+                label: (c) => ` ${c.parsed.y} TND`,
+              },
+            },
+          },
+        },
+      });
+    }
+
+    function initClassifyChart() {
+      const ctx = document.getElementById('chart-classify').getContext('2d');
+      if (clsChart) clsChart.destroy();
+      clsChart = new Chart(ctx, { type:'doughnut', data:{ labels:['Low','Medium','High'], datasets:[{ data:[34,33,33], backgroundColor:['#E74C3C','#F39C12','#27AE60'] }] }, options:{ responsive:true, maintainAspectRatio:false, animation:{duration:1000}, plugins:{legend:{position:'bottom'}} } });
+    }
+
+    window.addEventListener('load', () => { initForecastChart(); initClusterChart(); initBudgetChart(); initClassifyChart(); });
+  </script>
+</body>
+</html>

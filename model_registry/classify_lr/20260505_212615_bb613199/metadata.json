@@ -1,0 +1,8 @@
+{
+  "model_name": "classify_lr",
+  "run_id": "bb6131996f6c4987ae884f1c02f9109a",
+  "timestamp_utc": "20260505_212615",
+  "metrics": {
+    "accuracy": 0.9841269841269841
+  }
+}

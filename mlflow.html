@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MLflow Tracking — Scout Dashboard</title>
+  <style>
+    :root {
+      --red: #C0392B;
+      --red-dark: #922B21;
+      --bg: #F7F4F1;
+      --bg2: #EDEAE6;
+      --white: #FFFFFF;
+      --text: #1A1210;
+      --text-muted: #6B5B52;
+      --border: rgba(192,57,43,0.15);
+      --radius: 14px;
+      --success: #27AE60;
+      --warning: #F39C12;
+      --error: #E74C3C;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: Arial, sans-serif; background: var(--bg); color: var(--text); }
+    .container { max-width: 1400px; margin: 0 auto; padding: 24px; }
+    .header {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px;
+      margin-bottom: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .header h1 { color: var(--red-dark); font-size: 24px; }
+    .header-stats {
+      display: flex;
+      gap: 20px;
+    }
+    .stat-box {
+      background: var(--bg);
+      padding: 12px 16px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+    }
+    .stat-box .label { font-size: 12px; color: var(--text-muted); }
+    .stat-box .value { font-size: 20px; font-weight: 700; color: var(--red); }
+    button {
+      background: var(--red);
+      color: white;
+      border: none;
+      padding: 10px 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 14px;
+    }
+    button:hover { background: var(--red-dark); }
+    .back-link {
+      display: inline-block;
+      margin-bottom: 16px;
+      color: var(--red);
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .back-link:hover { text-decoration: underline; }
+    
+    /* Runs Table */
+    .runs-container,
+    .registry-container {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px;
+      overflow-x: auto;
+      margin-bottom: 24px;
+    }
+    .section-title {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      margin-bottom: 18px;
+    }
+    .section-title h2 {
+      font-size: 20px;
+      margin: 0;
+      color: var(--red-dark);
+    }
+    .section-title p {
+      margin: 0;
+      color: var(--text-muted);
+      font-size: 13px;
+    }
+    .registry-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
+      margin-top: 16px;
+    }
+    .model-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 16px;
+      min-height: 170px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .model-card .title {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--red-dark);
+    }
+    .model-card .subtext {
+      font-size: 12px;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+    .metric-list {
+      display: grid;
+      gap: 10px;
+      margin-top: 10px;
+    }
+    .metric-item {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 10px 12px;
+      background: var(--white);
+      border: 1px solid rgba(192,57,43,0.08);
+      border-radius: 8px;
+      font-size: 12px;
+    }
+    .metric-item .name { color: var(--text-muted); }
+    .metric-item .value { color: var(--red); font-weight: 700; }
+    .runs-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+    .runs-table thead {
+      background: var(--bg2);
+      border-bottom: 2px solid var(--border);
+    }
+    .runs-table th {
+      padding: 12px;
+      text-align: left;
+      font-weight: 700;
+      color: var(--text);
+    }
+    .runs-table td {
+      padding: 12px;
+      border-bottom: 1px solid var(--border);
+    }
+    .runs-table tr:hover { background: rgba(192,57,43,0.05); }
+    
+    /* Status badges */
+    .badge {
+      display: inline-block;
+      padding: 4px 8px;
+      border-radius: 4px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+    .badge-success { background: rgba(39,174,96,0.2); color: var(--success); }
+    .badge-running { background: rgba(243,156,18,0.2); color: var(--warning); }
+    .badge-failed { background: rgba(231,76,60,0.2); color: var(--error); }
+    
+    /* Run details */
+    .run-row.expanded + .run-details {
+      display: table-row;
+    }
+    .run-details {
+      display: none;
+    }
+    .run-details td {
+      padding: 16px;
+      background: rgba(192,57,43,0.02);
+    }
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 12px;
+      margin-top: 8px;
+    }
+    .metric-card {
+      background: linear-gradient(135deg, rgba(192,57,43,0.05) 0%, var(--white) 100%);
+      border: 1.5px solid rgba(192,57,43,0.15);
+      border-radius: 10px;
+      padding: 14px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+    }
+    .metric-card .name { font-size: 11px; color: var(--text-muted); font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
+    .metric-card .value { font-size: 20px; font-weight: 700; color: var(--red); margin-top: 8px; }
+    
+    .params-grid,
+    .tags-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 12px;
+      margin-top: 8px;
+    }
+    .param-card,
+    .tag-card {
+      background: rgba(192,57,43,0.08);
+      border: 1px solid rgba(192,57,43,0.2);
+      border-radius: 8px;
+      padding: 8px 12px;
+    }
+    .param-card .name,
+    .tag-card .name { font-size: 11px; color: var(--text-muted); font-weight: 600; }
+    .param-card .value,
+    .tag-card .value { font-size: 13px; font-weight: 600; color: var(--red); margin-top: 3px; }
+    
+    /* Loading & Empty states */
+    .loading {
+      text-align: center;
+      padding: 40px;
+      color: var(--text-muted);
+    }
+    .empty {
+      text-align: center;
+      padding: 40px;
+      color: var(--text-muted);
+    }
+    .spinner {
+      border: 3px solid var(--bg2);
+      border-top: 3px solid var(--red);
+      border-radius: 50%;
+      width: 30px;
+      height: 30px;
+      animation: spin 1s linear infinite;
+      display: inline-block;
+    }
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    
+    /* Expandable rows */
+    .expand-btn {
+      background: none;
+      border: none;
+      color: var(--red);
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 16px;
+      padding: 4px 8px;
+    }
+    .expand-btn:hover { color: var(--red-dark); }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a href="/" class="back-link"> </a>
+    
+    <div class="header">
+      <div>
+        <h1>📊 MLflow Run Tracking</h1>
+        <p style="color: var(--text-muted); margin-top: 4px;">Monitor all model training runs and their metrics</p>
+      </div>
+      <div class="header-stats">
+        <div class="stat-box">
+          <div class="label">Total Runs</div>
+          <div class="value" id="total-runs">0</div>
+        </div>
+      </div>
+      <button onclick="loadRuns()">🔄 Refresh</button>
+    </div>
+
+    <div class="runs-container">
+      <div id="content">
+        <div class="loading">
+          <div class="spinner"></div>
+          <p style="margin-top: 12px;">Loading MLflow runs...</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="registry-container">
+      <div class="section-title">
+        <div>
+          <h2>🧾 Model Registry</h2>
+          <p>Voir les modèles enregistrés et leurs métriques les plus récentes.</p>
+        </div>
+      </div>
+      <div id="registry-content">
+        <div class="loading">
+          <div class="spinner"></div>
+          <p style="margin-top: 12px;">Loading model registry...</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    async function loadRuns() {
+      const content = document.getElementById('content');
+      content.innerHTML = '<div class="loading"><div class="spinner"></div><p style="margin-top: 12px;">Loading MLflow runs...</p></div>';
+      
+      try {
+        const res = await fetch('/api/mlflow/runs');
+        const data = await res.json();
+        
+        if (!data.runs || data.runs.length === 0) {
+          content.innerHTML = '<div class="empty">ℹ️ No runs found. Run the training pipeline first.</div>';
+          document.getElementById('total-runs').textContent = '0';
+          return;
+        }
+
+        document.getElementById('total-runs').textContent = data.total_runs;
+        await loadRegistry();
+
+        let html = `
+          <table class="runs-table">
+            <thead>
+              <tr>
+                <th></th>
+                <th>Run ID</th>
+                <th>Experiment</th>
+                <th>Status</th>
+                <th>Start Time</th>
+                <th>Duration (s)</th>
+              </tr>
+            </thead>
+            <tbody>
+        `;
+
+        data.runs.forEach((run, idx) => {
+          const statusClass = run.status === 'FINISHED' ? 'success' : (run.status === 'RUNNING' ? 'running' : 'failed');
+          const startTime = run.start_time ? new Date(run.start_time).toLocaleString() : 'N/A';
+          const duration = typeof run.duration_seconds === 'number' ? run.duration_seconds.toFixed(2) : '0.00';
+
+          html += `
+            <tr class="run-row" id="run-${idx}">
+              <td><button class="expand-btn" onclick="toggleRow(${idx})">▶</button></td>
+              <td><code style="background: var(--bg2); padding: 4px 8px; border-radius: 4px; font-size: 11px;">${run.run_id.substring(0, 12)}</code></td>
+              <td>${run.experiment_name}</td>
+              <td><span class="badge badge-${statusClass}">${run.status}</span></td>
+              <td>${startTime}</td>
+              <td>${duration}s</td>
+            </tr>
+            <tr class="run-details" id="details-${idx}">
+              <td colspan="6">
+                ${renderRunDetails(run)}
+              </td>
+            </tr>
+          `;
+        });
+
+        html += `</tbody></table>`;
+        content.innerHTML = html;
+      } catch (e) {
+        content.innerHTML = `<div class="empty">❌ Error loading runs: ${e.message}</div>`;
+      }
+    }
+
+    function renderRunDetails(run) {
+      let html = '<div style="padding: 16px; background: rgba(192,57,43,0.02); border-radius: 8px;">';
+      
+      if (Object.keys(run.metrics).length > 0) {
+        html += '<h3 style="font-size: 14px; margin-bottom: 12px; color: var(--red);">📈 Metrics</h3>';
+        html += '<div class="metrics-grid">';
+        for (const [key, value] of Object.entries(run.metrics)) {
+          html += `
+            <div class="metric-card">
+              <div class="name">${key}</div>
+              <div class="value">${value !== null ? value : 'N/A'}</div>
+            </div>
+          `;
+        }
+        html += '</div>';
+      }
+
+      if (Object.keys(run.params).length > 0) {
+        html += '<h3 style="font-size: 14px; margin-top: 16px; margin-bottom: 12px; color: var(--red);">⚙️ Parameters</h3>';
+        html += '<div class="params-grid">';
+        for (const [key, value] of Object.entries(run.params)) {
+          html += `
+            <div class="param-card">
+              <div class="name">${key}</div>
+              <div class="value">${value || 'N/A'}</div>
+            </div>
+          `;
+        }
+        html += '</div>';
+      }
+
+      if (run.tags && Object.keys(run.tags).length > 0) {
+        html += '<h3 style="font-size: 14px; margin-top: 16px; margin-bottom: 12px; color: var(--red);">🏷️ Tags</h3>';
+        html += '<div class="tags-grid">';
+        for (const [key, value] of Object.entries(run.tags)) {
+          html += `
+            <div class="tag-card">
+              <div class="name">${key}</div>
+              <div class="value">${value !== undefined && value !== null && value !== '' ? value : 'N/A'}</div>
+            </div>
+          `;
+        }
+        html += '</div>';
+      }
+
+      html += '</div>';
+      return html;
+    }
+
+    async function loadRegistry() {
+      const registryContainer = document.getElementById('registry-content');
+      registryContainer.innerHTML = '<div class="loading"><div class="spinner"></div><p style="margin-top: 12px;">Loading model registry...</p></div>';
+
+      try {
+        const res = await fetch('/api/model_registry');
+        const data = await res.json();
+        if (!data.models || data.models.length === 0) {
+          registryContainer.innerHTML = '<div class="empty">ℹ️ Aucun modèle enregistré trouvé dans model_registry.</div>';
+          return;
+        }
+
+        let html = '<div class="registry-grid">';
+        data.models.forEach((model) => {
+          const metadata = model.metadata || {};
+          const metrics = metadata.metrics || {};
+
+          const metricsHtml = Object.entries(metrics).map(([key, value]) => `
+            <div class="metric-item"><span class="name">${key}</span><span class="value">${value}</span></div>
+          `).join('');
+
+          html += `
+            <div class="model-card">
+              <div class="title">${model.model_name}</div>
+              <div class="subtext">Version: ${model.version} · run_id: ${metadata.run_id || 'N/A'}</div>
+              <div class="metric-list">${metricsHtml}</div>
+            </div>
+          `;
+        });
+        html += '</div>';
+        registryContainer.innerHTML = html;
+      } catch (e) {
+        registryContainer.innerHTML = `<div class="empty">❌ Erreur lors du chargement du registre : ${e.message}</div>`;
+      }
+    }
+
+    function toggleRow(idx) {
+      const details = document.getElementById(`details-${idx}`);
+      const btn = document.getElementById(`run-${idx}`).querySelector('.expand-btn');
+      if (details.style.display === 'table-row') {
+        details.style.display = 'none';
+        btn.textContent = '▶';
+      } else {
+        details.style.display = 'table-row';
+        btn.textContent = '▼';
+      }
+    }
+
+    // Load runs and registry on page load
+    window.addEventListener('load', loadRuns);
+
+    // Auto-refresh (60s — lower server load; use Refresh for immediate update)
+    setInterval(loadRuns, 60000);
+  </script>
+</body>
+</html>

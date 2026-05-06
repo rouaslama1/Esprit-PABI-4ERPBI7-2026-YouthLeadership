@@ -1,0 +1,9 @@
+apiVersion: 1
+providers:
+  - name: Scout MLOps
+    folder: ""
+    type: file
+    options:
+      path: /var/lib/grafana/dashboards
+    disableDeletion: false
+    allowUiUpdates: true

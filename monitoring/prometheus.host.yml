@@ -1,0 +1,21 @@
+# Prometheus sans Docker — scrape l'API locale sur 127.0.0.1:8010
+# Lancer depuis la racine du dépôt :
+#   prometheus.exe --config.file=monitoring/prometheus.host.yml --web.listen-address=127.0.0.1:9090
+# (chemins rule_files relatifs au dossier de ce fichier)
+
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+
+rule_files:
+  - alerts.yml
+
+scrape_configs:
+  - job_name: scout-prediction-api
+    metrics_path: /metrics
+    static_configs:
+      - targets:
+          - 127.0.0.1:8010
+    relabel_configs:
+      - target_label: service
+        replacement: scout-api

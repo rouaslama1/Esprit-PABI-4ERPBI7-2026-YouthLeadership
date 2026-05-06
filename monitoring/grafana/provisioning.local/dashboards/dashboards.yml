@@ -1,0 +1,10 @@
+apiVersion: 1
+providers:
+  - name: Scout MLOps
+    folder: ""
+    type: file
+    options:
+      # Souvent ignoré sous Windows (cwd de grafana-server) — préférer : python scripts/import_grafana_dashboard.py
+      path: bundled
+    disableDeletion: false
+    allowUiUpdates: true

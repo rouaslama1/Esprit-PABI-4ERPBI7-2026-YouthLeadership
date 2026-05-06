@@ -1,0 +1,15 @@
+fastapi
+uvicorn
+flask
+requests
+mlflow
+pandas
+numpy
+scikit-learn
+statsmodels
+joblib
+pyyaml
+python-dotenv
+pytest
+httpx
+prometheus-client

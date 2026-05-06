@@ -1,0 +1,65 @@
+# Alerting rules (Week S13) — view in Prometheus UI: Alerts
+groups:
+  - name: scout_slo
+    rules:
+      - alert: HighPredictionLatencyP90
+        expr: |
+          histogram_quantile(0.9, sum by (le, model_type) (rate(scout_prediction_latency_seconds_bucket[5m]))) > 1.5
+        for: 2m
+        labels:
+          severity: warning
+        annotations:
+          summary: "P90 prediction latency high"
+          description: "Model {{ $labels.model_type }} latency exceeds 1.5s (traffic or degradation)."
+
+      - alert: ElevatedHTTPErrors
+        expr: sum(rate(scout_http_errors_total[5m])) > 0.05
+        for: 1m
+        labels:
+          severity: warning
+        annotations:
+          summary: "HTTP error rate elevated"
+
+      - alert: ValidationErrorsSpike
+        expr: sum(rate(scout_data_validation_errors_total[5m])) > 0.2
+        for: 2m
+        labels:
+          severity: info
+        annotations:
+          summary: "Many invalid payloads (missing features)"
+
+      - alert: ClassifierDriftSignal
+        expr: scout_drift_detected{kind="confidence_drop"} == 1
+        for: 1m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Classifier drift / low confidence"
+          description: "Review logs for DRIFT_WARNING — consider retraining."
+
+      - alert: ModelHealthBelowBaseline
+        expr: scout_model_health_vs_baseline_ratio < 0.95
+        for: 3m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Accuracy / health degradation vs baseline (>5% drop from nominal 1.0)"
+          description: "Model {{ $labels.model_type }} health ratio < 0.95 — aligns with >5% degradation rule."
+
+      - alert: LatencyDegradationPath
+        expr: rate(scout_slow_predict_http_total[5m]) > 0.02
+        for: 2m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Sustained slow /predict responses (HTTP path)"
+          description: "Check logs for HIGH_LATENCY — matches middleware latency threshold."
+
+      - alert: DriftAccuracyProxy
+        expr: scout_drift_detected{kind="accuracy_proxy"} == 1
+        for: 1m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Performance / drift proxy (simulated or degraded path)"
+          description: "Often tied to X-Simulate-Drift or reduced model health — see RETRAINING_TRIGGER in logs."

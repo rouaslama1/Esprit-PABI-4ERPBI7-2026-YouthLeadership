@@ -1,0 +1,9 @@
+{
+  "model_name": "forecast_arima",
+  "run_id": "11ec8ef2ba5b4fc2b01a8d755c5f17a9",
+  "timestamp_utc": "20260505_234002",
+  "metrics": {
+    "rmse": 46.99999496973476,
+    "mae": 46.99999496973476
+  }
+}

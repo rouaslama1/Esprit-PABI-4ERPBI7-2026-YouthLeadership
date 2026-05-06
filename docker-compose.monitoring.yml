@@ -1,0 +1,42 @@
+# Prometheus + Grafana for Week S13 observability
+# Prerequisite: API exposes /metrics on host port 8010
+#   python -m uvicorn api.main:app --host 0.0.0.0 --port 8010
+#
+# Start:  docker compose -f docker-compose.monitoring.yml up -d
+# Prometheus UI: http://localhost:9090
+# Grafana:        http://localhost:3000  (admin / admin)
+#
+# Linux: if host.docker.internal fails, replace in monitoring/prometheus.yml
+#        targets with host IP, e.g. 172.17.0.1:8010
+
+services:
+  prometheus:
+    image: prom/prometheus:v2.47.0
+    container_name: scout-prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./monitoring/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - ./monitoring/alerts.yml:/etc/prometheus/alerts.yml:ro
+    command:
+      - --config.file=/etc/prometheus/prometheus.yml
+      - --storage.tsdb.path=/prometheus
+      - --web.enable-lifecycle
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
+  grafana:
+    image: grafana/grafana:10.2.0
+    container_name: scout-grafana
+    ports:
+      - "3000:3000"
+    environment:
+      GF_SECURITY_ADMIN_USER: admin
+      GF_SECURITY_ADMIN_PASSWORD: admin
+      GF_USERS_ALLOW_SIGN_UP: "false"
+      GF_INSTALL_PLUGINS: ""
+    volumes:
+      - ./monitoring/grafana/provisioning:/etc/grafana/provisioning:ro
+      - ./monitoring/grafana/dashboards:/var/lib/grafana/dashboards:ro
+    depends_on:
+      - prometheus

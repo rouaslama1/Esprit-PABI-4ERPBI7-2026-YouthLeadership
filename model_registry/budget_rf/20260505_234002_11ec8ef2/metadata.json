@@ -1,0 +1,9 @@
+{
+  "model_name": "budget_rf",
+  "run_id": "11ec8ef2ba5b4fc2b01a8d755c5f17a9",
+  "timestamp_utc": "20260505_234002",
+  "metrics": {
+    "rmse_log": 0.0826549727360049,
+    "mae_log": 0.06361808839955023
+  }
+}

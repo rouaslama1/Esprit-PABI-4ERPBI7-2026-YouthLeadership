@@ -1,0 +1,224 @@
+================================================================================
+SCOUT DASHBOARD — Commandes + liens (SANS DOCKER en priorité)
+================================================================================
+Tu n’as pas Docker ? Utilise uniquement les sections A + B (+ C pour Grafana).
+Les blocs « OPTIONNEL Docker » en fin de fichier peuvent être ignorés.
+
+Racine du projet (exemple) :
+   C:\Users\ASUS\Desktop\PI\MLOPS\scout-dashboard
+
+--------------------------------------------------------------------------------
+★ RÉSUMÉ — Lancer l’app, l’API, Prometheus, Grafana (ordre recommandé)
+--------------------------------------------------------------------------------
+Ouvre un terminal par ligne. Toujours : cd vers la racine du projet, venv activé
+pour Python.
+
+  SERVICE        COMMANDE À EXÉCUTER
+  ---------------------------------------------------------------------------
+  1. API          python -m uvicorn api.main:app --host 127.0.0.1 --port 8010
+
+  2. App web      python app.py
+
+  3. Prometheus   (depuis la racine du dépôt, après install du binaire — voir B)
+                  mkdir tools\prometheus-data
+                  .\tools\prometheus-VERSION-windows-amd64\prometheus.exe --config.file=monitoring\prometheus.host.yml --web.listen-address=127.0.0.1:9090 --storage.tsdb.path=tools\prometheus-data
+                  (remplace prometheus-VERSION-windows-amd64 par ton dossier réel)
+
+.\tools\prometheus-2.47.0.windows-amd64\prometheus.exe `
+  --config.file=monitoring\prometheus.host.yml `
+  --web.listen-address=127.0.0.1:9090 `
+  --storage.tsdb.path=tools\prometheus-data
+
+
+  4. Grafana      (PowerShell, chemins à adapter si ton Grafana est ailleurs)
+                  $env:GF_PATHS_PROVISIONING = "C:\Users\ASUS\Desktop\PI\MLOPS\scout-dashboard\monitoring\grafana\provisioning.local"
+                  $env:GF_SERVER_HTTP_ADDR = "127.0.0.1"
+                  cd <dossier-grafana>\bin
+                  .\grafana-server.exe
+
+1/$env:GF_PATHS_PROVISIONING = "C:\Users\ASUS\Desktop\PI\MLOPS\scout-dashboard\monitoring\grafana\provisioning.local"
+2/$env:GF_SERVER_HTTP_ADDR = "127.0.0.1"
+3/cd .\tools\grafana-10.2.0\bin\
+4/.\grafana-server.exe
+
+
+
+  4b. Dashboard   (une fois Grafana démarré, autre terminal — racine + venv)
+                  python scripts\import_grafana_dashboard.py
+
+  5. (optionnel)  mlflow ui --backend-store-uri ./mlruns --port 5001
+
+Ordre conseillé : 1 API → 2 App (si besoin) → 3 Prometheus → 4 Grafana.
+Sans API sur 8010, Prometheus reste UP mais les métriques métier ne bougent pas.
+
+--------------------------------------------------------------------------------
+★ LIENS (URLs) — à garder sous la main
+--------------------------------------------------------------------------------
+
+  API FastAPI
+    Swagger / docs     http://127.0.0.1:8010/docs
+    Santé              http://127.0.0.1:8010/health
+    Métriques          http://127.0.0.1:8010/metrics
+
+  Application web (Flask)
+    Page d’accueil     http://127.0.0.1:5050/
+    MLflow (via Flask) http://127.0.0.1:5050/mlflow
+
+  Prometheus
+    Graph (requêtes)   http://127.0.0.1:9090/graph
+    Cibles (UP/DOWN)   http://127.0.0.1:9090/targets
+    Alertes            http://127.0.0.1:9090/alerts
+    (accueil)          http://127.0.0.1:9090/
+
+  Grafana
+    Interface          http://127.0.0.1:3000/
+    (souvent login)    admin / admin
+
+  MLflow UI (si lancé en CLI, terminal 5)
+    http://127.0.0.1:5001/
+
+Téléchargements (une fois) :
+  Prometheus  https://prometheus.io/download/   (windows-amd64.zip)
+  Grafana     https://grafana.com/grafana/download?platform=windows
+
+--------------------------------------------------------------------------------
+
+0) Prérequis (une fois)
+   cd C:\Users\ASUS\Desktop\PI\MLOPS\scout-dashboard
+   python -m venv .venv
+   .\.venv\Scripts\activate
+   pip install -r requirements.txt
+
+--------------------------------------------------------------------------------
+A) APPLICATION (API + web + MLflow) — pas de Docker
+--------------------------------------------------------------------------------
+
+Terminal 1 — API (indispensable pour que Prometheus ait des données sur /metrics)
+   python -m uvicorn api.main:app --host 127.0.0.1 --port 8010
+
+Terminal 2 — Web Flask
+   python app.py
+
+Terminal 3 — MLflow UI (optionnel)
+   mlflow ui --backend-store-uri ./mlruns --port 5001
+
+Liens
+   Page web           http://127.0.0.1:5050/
+   MLflow (Flask)     http://127.0.0.1:5050/mlflow
+   API Swagger        http://127.0.0.1:8010/docs
+   API santé          http://127.0.0.1:8010/health
+   Métriques brutes   http://127.0.0.1:8010/metrics
+   MLflow UI (CLI)    http://127.0.0.1:5001/
+
+--------------------------------------------------------------------------------
+B) PROMETHEUS + DONNÉES VISIBLES — sans Docker (Windows)
+--------------------------------------------------------------------------------
+
+1) Télécharger Prometheus (binaire, pas Docker) :
+   https://prometheus.io/download/
+   Choisir : prometheus-*-windows-amd64.zip
+   Dézipper ; tu obtiens prometheus.exe (note le dossier, ex. tools\prometheus-2.47.0.windows-amd64\)
+
+2) Créer un dossier pour les données TSDB (exemple) :
+   mkdir tools\prometheus-data
+
+3) Terminal API — laisser ouvert (voir section A, Terminal 1).
+
+4) Terminal Prometheus — depuis la RACINE du dépôt scout-dashboard :
+   cd C:\Users\ASUS\Desktop\PI\MLOPS\scout-dashboard
+
+   Si prometheus.exe est dans tools\prometheus-2.47.0.windows-amd64\ :
+   .\tools\prometheus-2.47.0.windows-amd64\prometheus.exe ^
+     --config.file=monitoring\prometheus.host.yml ^
+     --web.listen-address=127.0.0.1:9090 ^
+     --storage.tsdb.path=tools\prometheus-data
+
+   (Une seule ligne PowerShell sans ^ si tu préfères.)
+
+5) Vérifier que la cible est UP :
+   Navigateur : http://127.0.0.1:9090/targets
+   La ligne scout-prediction-api doit être « UP » (sinon l’API n’est pas sur 8010).
+
+6) Générer du trafic (au choix) :
+   Continu léger :
+   python scripts\pulse_metrics.py
+   Plus de points par minute (même script) :
+   python scripts\pulse_metrics.py --heavy
+   Pic « beaucoup de métriques » en une fois (laisser finir, ~1–3 min) :
+   python scripts\simulate_monitoring.py stress
+   Ou à la carte :
+   python scripts\simulate_monitoring.py traffic --workers 32 --total 512
+   python scripts\simulate_monitoring.py mixed
+   python scripts\simulate_monitoring.py errors
+   python scripts\simulate_monitoring.py drift
+   python scripts\simulate_monitoring.py all
+
+7) Voir des DONNÉES dans Prometheus (onglet Graph) :
+   http://127.0.0.1:9090/graph
+
+   Requêtes utiles (une par une, Execute ; intervalle e.g. 5m ou 15m) :
+   scout_predictions_total
+   scout_predictions_total{model_type="budget"}
+   scout_predictions_total{model_type="classify"}
+   scout_http_requests_total
+   scout_http_errors_total
+   scout_data_validation_errors_total
+   scout_prediction_errors_total
+   rate(scout_predictions_total[1m])
+   histogram_quantile(0.95, sum(rate(scout_prediction_latency_seconds_bucket[5m])) by (le, model_type))
+
+   Après « errors », les compteurs 4xx / validation montent ; après « drift », regarder scout_drift_detected et les logs.
+
+Liens Prometheus
+   Accueil / Graph    http://127.0.0.1:9090/graph
+   Cibles (UP/DOWN)   http://127.0.0.1:9090/targets
+   Alertes            http://127.0.0.1:9090/alerts
+
+Fichier de config utilisé (scrape 127.0.0.1:8010) :
+   monitoring\prometheus.host.yml
+
+--------------------------------------------------------------------------------
+C) GRAFANA — sans Docker (optionnel pour les jolis tableaux)
+--------------------------------------------------------------------------------
+
+Téléchargement : https://grafana.com/grafana/download?platform=windows
+
+Variables puis lancer grafana-server.exe depuis le dossier Grafana :
+
+   $env:GF_PATHS_PROVISIONING = "C:\Users\ASUS\Desktop\PI\MLOPS\scout-dashboard\monitoring\grafana\provisioning.local"
+   $env:GF_SERVER_HTTP_ADDR = "127.0.0.1"
+   cd <dossier-extrait-grafana>\bin
+   .\grafana-server.exe
+
+Import du dashboard (recommandé) :
+   cd C:\Users\ASUS\Desktop\PI\MLOPS\scout-dashboard
+   .\.venv\Scripts\activate
+   python scripts\import_grafana_dashboard.py
+
+Puis ouvrir l’URL affichée par le script, ou :
+   http://127.0.0.1:3000/
+   (login souvent admin / admin)
+
+Avec pulse_metrics ou simulate_monitoring actif, les panneaux se remplissent.
+
+--------------------------------------------------------------------------------
+D) TESTS
+--------------------------------------------------------------------------------
+
+   pytest -q
+
+================================================================================
+OPTIONNEL — seulement si Docker est installé plus tard
+================================================================================
+
+Monitoring avec Docker Compose :
+   python -m uvicorn api.main:app --host 0.0.0.0 --port 8010
+   docker compose -f docker-compose.monitoring.yml up -d
+   docker compose -f docker-compose.monitoring.yml down
+
+Application complète S12 en conteneurs :
+   docker compose up --build
+
+================================================================================
+Fin du fichier
+================================================================================
